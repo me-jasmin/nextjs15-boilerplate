@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import "../globals.css";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import MainNavigation from "@/components/MainNavigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,8 +51,15 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <LanguageSwitcher />
-          {children}
+          <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <MainNavigation />
+            <div style={{ padding: '0 1rem' }}>
+              <LanguageSwitcher />
+              <main style={{ flex: 1 }}>
+                {children}
+              </main>
+            </div>
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>

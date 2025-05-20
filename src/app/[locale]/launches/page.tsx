@@ -3,7 +3,6 @@ import { getLaunches } from '@/lib/spacex';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import styles from '../../spacex.module.css';
-import SpaceXNav from '@/components/SpaceXNav';
 
 export default async function LaunchesPage() {
   const t = useTranslations('SpaceX');
@@ -12,8 +11,6 @@ export default async function LaunchesPage() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{t('launchesTitle')}</h1>
-      
-      <SpaceXNav />
       
       <div className={styles.grid}>
         {launches.map((launch) => (
