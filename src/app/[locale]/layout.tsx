@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import "../globals.css";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
@@ -36,7 +36,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }>) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   
   let messages;
   try {
