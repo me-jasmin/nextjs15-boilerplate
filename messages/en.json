@@ -26,5 +26,41 @@
     "title": "404 - Page Not Found",
     "message": "This page could not be found.",
     "returnHome": "Return to home page"
+  },
+  "Navigation": {
+    "home": "Company",
+    "rockets": "Rockets",
+    "launches": "Launches"
+  },
+  "SpaceX": {
+    "companyTitle": "SpaceX Company Information",
+    "rocketsTitle": "SpaceX Rockets",
+    "launchesTitle": "SpaceX Launches",
+    "founded": "Founded",
+    "employees": "Employees",
+    "ceo": "CEO",
+    "cto": "CTO",
+    "coo": "COO",
+    "valuation": "Valuation",
+    "billion": "billion",
+    "headquarters": "Headquarters",
+    "active": "Active",
+    "inactive": "Inactive",
+    "firstFlight": "First Flight",
+    "country": "Country",
+    "successRate": "Success Rate",
+    "costPerLaunch": "Cost Per Launch",
+    "readMoreWikipedia": "Read more on Wikipedia",
+    "successful": "Successful",
+    "failed": "Failed",
+    "noDetails": "No details available",
+    "article": "Article",
+    "video": "Video",
+    "wikipedia": "Wikipedia"
+  },
+  "Error": {
+    "somethingWentWrong": "Something went wrong",
+    "unexpectedError": "An unexpected error occurred",
+    "tryAgain": "Try again"
   }
 }
