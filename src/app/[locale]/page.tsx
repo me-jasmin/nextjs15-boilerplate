@@ -1,82 +1,62 @@
 import React from 'react';
-import Image from "next/image";
+import { getCompanyInfo } from '@/lib/spacex';
 import { useTranslations } from 'next-intl';
-import styles from "../page.module.css";
+import styles from '../spacex.module.css';
+import SpaceXNav from '@/components/SpaceXNav';
 
-export default function Home() {
-  const t = useTranslations('Index');
-  const alt = useTranslations('Alt');
+export default async function Home() {
+  const t = useTranslations('SpaceX');
+  const companyInfo = await getCompanyInfo();
   
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt={alt('nextLogo')}
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            {t('getStarted')} <code>src/app/[locale]/page.tsx</code>.
-          </li>
-          <li>{t('saveChanges')}</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt={alt('vercelLogo')}
-              width={20}
-              height={20}
-            />
-            {t('deployNow')}
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            {t('readDocs')}
-          </a>
+    <div className={styles.container}>
+      <h1 className={styles.title}>{t('companyTitle')}</h1>
+      
+      <SpaceXNav />
+      
+      <div className={styles.infoCard}>
+        <h2 className={styles.subtitle}>{companyInfo.name}</h2>
+        <p>{companyInfo.summary}</p>
+        
+        <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
+          <div className={styles.stat}>
+            <span className={styles.statLabel}>{t('founded')}</span>
+            <span className={styles.statValue}>{companyInfo.founded}</span>
+          </div>
+          
+          <div className={styles.stat}>
+            <span className={styles.statLabel}>{t('employees')}</span>
+            <span className={styles.statValue}>{companyInfo.employees}</span>
+          </div>
+          
+          <div className={styles.stat}>
+            <span className={styles.statLabel}>{t('ceo')}</span>
+            <span className={styles.statValue}>{companyInfo.ceo}</span>
+          </div>
+          
+          <div className={styles.stat}>
+            <span className={styles.statLabel}>{t('cto')}</span>
+            <span className={styles.statValue}>{companyInfo.cto}</span>
+          </div>
+          
+          <div className={styles.stat}>
+            <span className={styles.statLabel}>{t('coo')}</span>
+            <span className={styles.statValue}>{companyInfo.coo}</span>
+          </div>
+          
+          <div className={styles.stat}>
+            <span className={styles.statLabel}>{t('valuation')}</span>
+            <span className={styles.statValue}>${(companyInfo.valuation / 1000000000).toFixed(1)} {t('billion')}</span>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/file.svg" alt={alt('fileIcon')} width={16} height={16} />
-          {t('learn')}
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/window.svg" alt={alt('windowIcon')} width={16} height={16} />
-          {t('examples')}
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/globe.svg" alt={alt('globeIcon')} width={16} height={16} />
-          {t('goToNextjs')}
-        </a>
-      </footer>
+        
+        <div style={{ marginTop: '2rem' }}>
+          <h3 className={styles.subtitle}>{t('headquarters')}</h3>
+          <p>
+            {companyInfo.headquarters.address}, {companyInfo.headquarters.city}, {companyInfo.headquarters.state}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
