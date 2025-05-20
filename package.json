@@ -12,25 +12,26 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,md,json}\""
   },
   "dependencies": {
+    "next": "15.3.2",
+    "next-intl": "^4.1.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.2"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
-    "@eslint/eslintrc": "^3",
     "eslint-config-prettier": "^10.1.5",
-    "prettier": "^3.2.5",
-    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard": "^34.0.0",
-    "stylelint-config-prettier": "^9.0.5",
     "postcss": "^8.5.3",
-    "postcss-syntax": "^0.36.2"
+    "postcss-syntax": "^0.36.2",
+    "prettier": "^3.2.5",
+    "stylelint": "^15.11.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^34.0.0",
+    "typescript": "^5"
   }
 }
