@@ -17,10 +17,11 @@ const geistMono = Geist_Mono({
 });
 
 export async function generateMetadata({
-  params: { locale }
+  params
 }: {
   params: { locale: string }
 }): Promise<Metadata> {
+  const locale = params.locale;
   const t = await getTranslations({ locale, namespace: 'Index' });
   
   return {
@@ -31,11 +32,12 @@ export async function generateMetadata({
 
 export default async function RootLayout({
   children,
-  params: { locale }
+  params
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
 }>) {
+  const locale = params.locale;
   setRequestLocale(locale);
   
   let messages;
