@@ -1,0 +1,30 @@
+{
+  "Index": {
+    "title": "Next.js App erstellen",
+    "description": "Generiert durch create next app",
+    "getStarted": "Beginnen Sie mit der Bearbeitung von",
+    "saveChanges": "Speichern Sie und sehen Sie Ihre Änderungen sofort.",
+    "deployNow": "Jetzt bereitstellen",
+    "readDocs": "Unsere Dokumentation lesen",
+    "learn": "Lernen",
+    "examples": "Beispiele",
+    "goToNextjs": "Zu nextjs.org gehen →"
+  },
+  "Alt": {
+    "nextLogo": "Next.js Logo",
+    "vercelLogo": "Vercel Markenzeichen",
+    "fileIcon": "Datei-Symbol",
+    "windowIcon": "Fenster-Symbol",
+    "globeIcon": "Globus-Symbol"
+  },
+  "LanguageSwitcher": {
+    "label": "Sprache ändern",
+    "en": "Englisch",
+    "de": "Deutsch"
+  },
+  "NotFound": {
+    "title": "404 - Seite nicht gefunden",
+    "message": "Diese Seite konnte nicht gefunden werden.",
+    "returnHome": "Zurück zur Startseite"
+  }
+}
