@@ -1,61 +1,67 @@
-import React from 'react';
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { NextIntlClientProvider } from 'next-intl';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import "../globals.css";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { ReactNode } from 'react';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { ColorSchemeScript, createTheme, MantineColorsTuple, mantineHtmlProps, MantineProvider } from '@mantine/core';
 
-export async function generateMetadata({
-  params
-}: {
-  params: { locale: string }
-}): Promise<Metadata> {
-  const locale = params.locale;
-  const t = await getTranslations({ locale, namespace: 'Index' });
-  
-  return {
-    title: t('title'),
-    description: t('description'),
-  };
-}
+import SpaceXNav from '@/components/SpaceXNav';
 
-export default async function RootLayout({
-  children,
-  params
-}: Readonly<{
-  children: React.ReactNode;
-  params: { locale: string };
-}>) {
-  const locale = params.locale;
-  setRequestLocale(locale);
-  
-  let messages;
-  try {
-    messages = (await import(`../../../messages/${locale}.json`)).default;
-  } catch (error) {
-    console.error(`Failed to load messages for locale ${locale}`, error);
-    messages = (await import(`../../../messages/en.json`)).default;
-  }
-  
-  return (
-    <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <LanguageSwitcher />
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
-  );
+import { routing } from '@/i18n/routing';
+
+
+
+type Props = {
+    children: ReactNode;
+    params: Promise<{ locale: Locale }>;
+};
+
+export default async function LocaleLayout({ children, params }: Props) {
+    const { locale } = await params;
+
+    if (!hasLocale(routing.locales, locale)) {
+        notFound();
+    }
+
+    setRequestLocale(locale);
+
+    const myColor: MantineColorsTuple = [
+        '#effde7',
+        '#e1f8d4',
+        '#c3efab',
+        '#a2e67e',
+        '#87de58',
+        '#75d93f',
+        '#6bd731',
+        '#59be23',
+        '#4da91b',
+        '#3d920d',
+    ];
+
+    const theme = createTheme({
+        primaryColor: 'myColor',
+        autoContrast: true,
+        activeClassName: '',
+        colors: {
+            myColor,
+        },
+    });
+
+    return (
+        <html lang={locale} {...mantineHtmlProps}>
+            <head>
+                <ColorSchemeScript defaultColorScheme="auto" />
+                <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no" />
+            </head>
+            <body className="body">
+                <NextIntlClientProvider>
+                    <MantineProvider theme={theme} defaultColorScheme="auto">
+                        <SpaceXNav />
+                        {children}
+                    </MantineProvider>
+                </NextIntlClientProvider>
+            </body>
+        </html>
+    );
 }

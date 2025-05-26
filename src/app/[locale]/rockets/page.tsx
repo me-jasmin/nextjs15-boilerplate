@@ -1,68 +1,70 @@
-import React from 'react';
-import { getRockets } from '@/lib/spacex';
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
-import styles from '../../spacex.module.css';
-import SpaceXNav from '@/components/SpaceXNav';
+import { getTranslations } from 'next-intl/server';
+
+import { Badge, Card, Group, SimpleGrid, Text } from '@mantine/core';
+
+import { getRockets, Rocket } from '@/lib/spacex';
 
 export default async function RocketsPage() {
-  const t = useTranslations('SpaceX');
-  const rockets = await getRockets();
-  
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>{t('rocketsTitle')}</h1>
-      
-      <SpaceXNav />
-      
-      <div className={styles.grid}>
-        {rockets.map((rocket) => (
-          <div key={rocket.id} className={styles.card}>
-            <h2 className={styles.cardTitle}>{rocket.name}</h2>
-            <div className={styles.cardSubtitle}>
-              {rocket.active ? (
-                <span className={`${styles.badge} ${styles.badgeSuccess}`}>{t('active')}</span>
-              ) : (
-                <span className={`${styles.badge} ${styles.badgeError}`}>{t('inactive')}</span>
-              )}
-              <span>{rocket.company}</span>
-            </div>
-            
-            <p className={styles.cardBody}>{rocket.description}</p>
-            
-            <div style={{ marginBottom: '1rem' }}>
-              <div className={styles.stat}>
-                <span className={styles.statLabel}>{t('firstFlight')}</span>
-                <span className={styles.statValue}>{rocket.first_flight}</span>
-              </div>
-              
-              <div className={styles.stat}>
-                <span className={styles.statLabel}>{t('country')}</span>
-                <span className={styles.statValue}>{rocket.country}</span>
-              </div>
-              
-              <div className={styles.stat}>
-                <span className={styles.statLabel}>{t('successRate')}</span>
-                <span className={styles.statValue}>{rocket.success_rate_pct}%</span>
-              </div>
-              
-              <div className={styles.stat}>
-                <span className={styles.statLabel}>{t('costPerLaunch')}</span>
-                <span className={styles.statValue}>${(rocket.cost_per_launch / 1000000).toFixed(1)}M</span>
-              </div>
-            </div>
-            
-            <a
-              href={rocket.wikipedia}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.cardLink}
-            >
-              {t('readMoreWikipedia')} →
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+    const t = await getTranslations('SpaceX');
+    const rockets: Rocket[] = await getRockets();
+
+    return (
+        <>
+            <h1>{t('rocketsTitle')}</h1>
+            <SimpleGrid cols={{ base: 1, sm: 2, lg: 5 }} spacing={{ base: 10, sm: 'xl' }} verticalSpacing={{ base: 'md', sm: 'xl' }}>
+                {rockets.map(rocket => (
+                    <Card shadow="sm" padding="xl" component="div" key={rocket.id}>
+                        <Text fw={500} size="lg" mt="md">
+                            {rocket.name}
+                        </Text>
+                        <Text mt="xs" size="sm">
+                            {rocket.company}
+                        </Text>
+                        <Group>
+                            {rocket.active !== null ? (
+                                rocket.active ? (
+                                    <Badge variant="light" color="lime">
+                                        {t('active')}
+                                    </Badge>
+                                ) : (
+                                    <Badge variant="light" color="grey">
+                                        {t('inactive')}
+                                    </Badge>
+                                )
+                            ) : null}
+                        </Group>
+                        <Text mt="xs" size="sm">
+                            {rocket.description}
+                        </Text>
+
+                        <div style={{ marginBottom: '1rem' }}>
+                            <div>
+                                <span>{t('firstFlight')}</span>
+                                <span>{rocket.first_flight}</span>
+                            </div>
+
+                            <div>
+                                <span>{t('country')}</span>
+                                <span>{rocket.country}</span>
+                            </div>
+
+                            <div>
+                                <span>{t('successRate')}</span>
+                                <span>{rocket.success_rate_pct}%</span>
+                            </div>
+
+                            <div>
+                                <span>{t('costPerLaunch')}</span>
+                                <span>${(rocket.cost_per_launch / 1000000).toFixed(1)}M</span>
+                            </div>
+                        </div>
+
+                        <a href={rocket.wikipedia} target="_blank" rel="noopener noreferrer">
+                            {t('readMoreWikipedia')} →
+                        </a>
+                    </Card>
+                ))}
+            </SimpleGrid>
+        </>
+    );
 }

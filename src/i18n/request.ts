@@ -1,20 +1,14 @@
+import { hasLocale } from 'next-intl';
 import { getRequestConfig } from 'next-intl/server';
 
-export default getRequestConfig(async ({ locale }) => {
-  const safeLocale = locale || 'en';
-  
-  try {
+import { routing } from './routing';
+
+export default getRequestConfig(async ({ requestLocale }) => {
+    const requested = await requestLocale;
+    const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
+
     return {
-      locale: safeLocale,
-      messages: (await import(`../../messages/${safeLocale}.json`)).default,
-      timeZone: 'Europe/London'
+        locale,
+        messages: (await import(`../../messages/${locale}.json`)).default,
     };
-  } catch (error) {
-    console.error(`Failed to load messages for locale ${safeLocale}`, error);
-    return {
-      locale: 'en',
-      messages: (await import('../../messages/en.json')).default,
-      timeZone: 'Europe/London'
-    };
-  }
 });
