@@ -1,0 +1,49 @@
+@use 'sass:math';
+
+@use './variables' as *;
+
+@function rem($value) {
+    @return #{math.div(math.div($value, $value * 0 + 1), 16)}rem;
+}
+
+@mixin light {
+    [data-mantine-color-scheme='light'] & {
+        @content;
+    }
+}
+
+@mixin dark {
+    [data-mantine-color-scheme='dark'] & {
+        @content;
+    }
+}
+
+@mixin for-phone-up {
+    @media (width >= $mantine-breakpoint-xs) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (width >= $mantine-breakpoint-sm) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (width >= $mantine-breakpoint-md) {
+        @content;
+    }
+}
+
+@mixin for-desktop-up {
+    @media (width >= $mantine-breakpoint-lg) {
+        @content;
+    }
+}
+
+@mixin for-desktop-wide-up {
+    @media (width >= $mantine-breakpoint-xl) {
+        @content;
+    }
+}

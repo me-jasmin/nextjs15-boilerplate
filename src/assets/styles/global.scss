@@ -1,67 +1,37 @@
-@use 'sass:math';
+@forward './variables';
+@forward './mixin';
+
+@use './fonts.css' as *;
 
 .body {
-    scrollbar-gutter: stable both-edges;
+    width: calc(100vw - (100vw - 100%));
+    min-height: 100vh;
     scroll-behavior: smooth;
 }
 
-$mantine-breakpoint-xs: '36em';
-$mantine-breakpoint-sm: '48em';
-$mantine-breakpoint-md: '62em';
-$mantine-breakpoint-lg: '75em';
-$mantine-breakpoint-xl: '88em';
+.main-container {
+    position: relative;
 
-@function rem($value) {
-    @return #{math.div(math.div($value, $value * 0 + 1), 16)}rem;
-}
-
-@mixin light {
-    [data-mantine-color-scheme='light'] & {
-        @content;
+    > div {
+        transform-style: preserve-3d;
+        overflow: hidden;
+        transition:
+            opacity 0.5s ease-in-out,
+            filter 0.5s ease-in-out,
+            transform 0.5s ease-in-out;
     }
 }
 
-@mixin dark {
-    [data-mantine-color-scheme='dark'] & {
-        @content;
-    }
-}
+.navigation-opened {
+    overflow: hidden;
 
-@mixin hover {
-    @media (hover: hover) {
-        &:hover {
-            @content;
-        }
+    body {
+        overflow: hidden;
     }
 
-    @media (hover: none) {
-        &:active {
-            @content;
-        }
-    }
-}
-
-@mixin smaller-than($breakpoint) {
-    @media (max-width: $breakpoint) {
-        @content;
-    }
-}
-
-@mixin larger-than($breakpoint) {
-    @media (min-width: $breakpoint) {
-        @content;
-    }
-}
-
-// Add direction mixins if you need rtl support
-@mixin rtl {
-    [dir='rtl'] & {
-        @content;
-    }
-}
-
-@mixin ltr {
-    [dir='ltr'] & {
-        @content;
+    .main-container > div {
+        opacity: 0.6;
+        filter: blur(1rem) brightness(50%);
+        transform: scale(1.2);
     }
 }

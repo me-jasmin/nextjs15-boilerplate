@@ -1,19 +1,30 @@
-import { getTranslations } from 'next-intl/server';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
+import { Metadata } from 'next';
 
-import { Badge, Button, Card, Group, SimpleGrid, Text } from '@mantine/core';
+import { Badge, Button, Card, Group, SimpleGrid, Text, Title } from '@mantine/core';
 
-import { getLaunches } from '@/lib/spacex';
+import { launch, Launch } from '@/lib/api/launches.graphql';
+import getData from '@/lib/getData';
+
+export const metadata: Metadata = {
+    title: 'Launches',
+    description: 'SpaceX launches, including mission details, rocket information, and links to articles, videos, and Wikipedia.',
+};
 
 export default async function LaunchesPage() {
-    const t = await getTranslations('SpaceX');
-    const launches = await getLaunches(10);
+    const t = await getTranslations('launches');
+    const data: Launch[] = await getData({ query: launch, variables: { limit: 10 }, key: 'launchesPast' });
 
     return (
         <>
-            <h1>{t('launchesTitle')}</h1>
+            <Title order={1} mb="lg">
+                {t('launchesTitle')}
+            </Title>
             <SimpleGrid cols={{ base: 1, sm: 2, lg: 5 }} spacing={{ base: 10, sm: 'xl' }} verticalSpacing={{ base: 'md', sm: 'xl' }}>
-                {launches.map(launch => (
+                {data.map(launch => (
                     <Card shadow="sm" padding="xl" component="div" key={launch.id}>
                         <Text fw={500} size="lg" mt="md">
                             {launch.mission_name}

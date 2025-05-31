@@ -1,5 +1,8 @@
-import Company from '@/components/pages/company';
+import { Metadata } from 'next';
 
-const CompanyPage = async () => <Company />;
+export const metadata: Metadata = {
+    title: 'About',
+    description: 'All about SpaceX, its management, info, and social media presence.',
+};
 
-export default CompanyPage;
+export { default } from '@/components/pages/about';

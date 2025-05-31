@@ -1,18 +1,30 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { getTranslations } from 'next-intl/server';
+
+
 
 import { Badge, Card, Group, SimpleGrid, Text } from '@mantine/core';
 
-import { getRockets, Rocket } from '@/lib/spacex';
+
+
+import { Rocket, rocket } from '@/lib/api/rockets.graphql';
+import getData from '@/lib/getData';
+
+
+
+
 
 export default async function RocketsPage() {
-    const t = await getTranslations('SpaceX');
-    const rockets: Rocket[] = await getRockets();
+    const t = await getTranslations('rockets');
+    const data: Rocket[] = await getData({ query: rocket, key: 'rockets' });
 
     return (
         <>
             <h1>{t('rocketsTitle')}</h1>
             <SimpleGrid cols={{ base: 1, sm: 2, lg: 5 }} spacing={{ base: 10, sm: 'xl' }} verticalSpacing={{ base: 'md', sm: 'xl' }}>
-                {rockets.map(rocket => (
+                {data.map(rocket => (
                     <Card shadow="sm" padding="xl" component="div" key={rocket.id}>
                         <Text fw={500} size="lg" mt="md">
                             {rocket.name}

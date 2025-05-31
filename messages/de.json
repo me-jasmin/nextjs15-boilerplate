@@ -1,60 +1,35 @@
 {
-    "HomePage": {
-        "title": "Hello world! DE",
-        "about": "Go to the about page DE"
-    },
-    "Index": {
-        "title": "Next.js App erstellen",
-        "description": "Generiert durch create next app",
-        "getStarted": "Beginnen Sie mit der Bearbeitung von",
-        "saveChanges": "Speichern Sie und sehen Sie Ihre Änderungen sofort.",
-        "deployNow": "Jetzt bereitstellen",
-        "readDocs": "Unsere Dokumentation lesen",
-        "learn": "Lernen",
-        "examples": "Beispiele",
-        "goToNextjs": "Zu nextjs.org gehen →"
-    },
-    "Alt": {
-        "nextLogo": "Next.js Logo",
-        "vercelLogo": "Vercel Markenzeichen",
-        "fileIcon": "Datei-Symbol",
-        "windowIcon": "Fenster-Symbol",
-        "globeIcon": "Globus-Symbol"
-    },
-    "LanguageSwitcher": {
-        "label": "Sprache ändern",
-        "en": "Englisch",
-        "de": "Deutsch"
-    },
-    "NotFound": {
-        "title": "404 - Seite nicht gefunden",
-        "message": "Diese Seite konnte nicht gefunden werden.",
-        "returnHome": "Zurück zur Startseite"
-    },
-    "Navigation": {
-        "home": "Unternehmen",
+    "navigation": {
+        "about": "Über uns",
         "rockets": "Raketen",
         "launches": "Starts"
     },
-    "SpaceX": {
-        "companyTitle": "SpaceX Unternehmensinformationen",
-        "rocketsTitle": "SpaceX Raketen",
-        "launchesTitle": "SpaceX Raketenstarts",
+    "languageSwitcher": {
+        "label": "Sprache",
+        "en": "Englisch",
+        "de": "Deutsch"
+    },
+    "about": {
+        "title": "Willkommen bei SpaceX",
         "founded": "Gegründet",
         "employees": "Mitarbeiter",
         "ceo": "Geschäftsführer",
         "cto": "Technischer Direktor",
         "coo": "Betriebsleiter",
-        "valuation": "Bewertung",
-        "billion": "Milliarden",
-        "headquarters": "Hauptsitz",
+        "valuation": "Bewertung"
+    },
+    "rockets": {
+        "rocketsTitle": "SpaceX Raketen",
         "active": "Aktiv",
         "inactive": "Inaktiv",
         "firstFlight": "Erster Flug",
         "country": "Land",
         "successRate": "Erfolgsrate",
         "costPerLaunch": "Kosten pro Start",
-        "readMoreWikipedia": "Mehr auf Wikipedia lesen",
+        "readMoreWikipedia": "Mehr auf Wikipedia lesen"
+    },
+    "launches": {
+        "launchesTitle": "SpaceX Raketenstarts",
         "successful": "Erfolgreich",
         "failed": "Fehlgeschlagen",
         "noDetails": "Keine Details verfügbar",
@@ -62,7 +37,14 @@
         "video": "Video",
         "wikipedia": "Wikipedia"
     },
-    "Error": {
+    "common": {
+    },
+    "notFound": {
+        "title": "404 - Seite nicht gefunden",
+        "message": "Diese Seite konnte nicht gefunden werden.",
+        "returnHome": "Zurück zur Startseite"
+    },
+    "error": {
         "somethingWentWrong": "Etwas ist schief gelaufen",
         "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten",
         "tryAgain": "Erneut versuchen"

@@ -1,23 +1,23 @@
 import { ReactNode } from 'react';
 
+import { notFound } from 'next/navigation';
 import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
 
-import { ColorSchemeScript, createTheme, MantineColorsTuple, mantineHtmlProps, MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, createTheme, mantineHtmlProps, MantineProvider } from '@mantine/core';
 
-import SpaceXNav from '@/components/SpaceXNav';
+import Navigation from '@/components/navigation/Navigation';
 
 import { routing } from '@/i18n/routing';
-
-
 
 type Props = {
     children: ReactNode;
     params: Promise<{ locale: Locale }>;
 };
 
-export default async function LocaleLayout({ children, params }: Props) {
+const generateStaticParams = () => routing.locales.map(locale => ({ locale }));
+
+const LocaleLayout = async ({ children, params }: Props) => {
     const { locale } = await params;
 
     if (!hasLocale(routing.locales, locale)) {
@@ -26,25 +26,20 @@ export default async function LocaleLayout({ children, params }: Props) {
 
     setRequestLocale(locale);
 
-    const myColor: MantineColorsTuple = [
-        '#effde7',
-        '#e1f8d4',
-        '#c3efab',
-        '#a2e67e',
-        '#87de58',
-        '#75d93f',
-        '#6bd731',
-        '#59be23',
-        '#4da91b',
-        '#3d920d',
-    ];
-
     const theme = createTheme({
-        primaryColor: 'myColor',
+        primaryColor: 'blue',
+        breakpoints: {
+            xs: '24em',
+            sm: '36em',
+            md: '48em',
+            lg: '62em',
+            xl: '75em',
+        },
         autoContrast: true,
-        activeClassName: '',
-        colors: {
-            myColor,
+        activeClassName: 'active',
+        fontFamily: 'd-dinregular',
+        headings: {
+            fontFamily: 'd-dindin-bold',
         },
     });
 
@@ -52,16 +47,20 @@ export default async function LocaleLayout({ children, params }: Props) {
         <html lang={locale} {...mantineHtmlProps}>
             <head>
                 <ColorSchemeScript defaultColorScheme="auto" />
-                <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no" />
             </head>
             <body className="body">
-                <NextIntlClientProvider>
-                    <MantineProvider theme={theme} defaultColorScheme="auto">
-                        <SpaceXNav />
-                        {children}
-                    </MantineProvider>
-                </NextIntlClientProvider>
+                <MantineProvider theme={theme} defaultColorScheme="auto">
+                    <NextIntlClientProvider>
+                        <main className="main-container">
+                            <Navigation />
+                            {children}
+                        </main>
+                    </NextIntlClientProvider>
+                </MantineProvider>
             </body>
         </html>
     );
-}
+};
+
+export default LocaleLayout;
+export { generateStaticParams };
