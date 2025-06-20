@@ -1,18 +1,19 @@
 %stat,
 .stat {
     display: flex;
-    min-height: 120px;
-    padding-top: var(--mantine-spacing-xl);
-    background-color: light-dark(rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.02));
-    backdrop-filter: blur(10px);
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
+    min-height: 120px;
+    padding-top: var(--mantine-spacing-xl);
+    background-color: light-dark(rgb(255 255 255 / 2%), rgb(0 0 0 / 2%));
+    backdrop-filter: blur(10px);
 
     &-loading {
         @extend %stat;
+
         background-color: unset;
-        border: 1px solid light-dark(rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.04));
+        border: 1px solid light-dark(rgb(255 255 255 / 4%), rgb(0 0 0 / 4%));
         box-shadow: none;
         backdrop-filter: unset;
     }

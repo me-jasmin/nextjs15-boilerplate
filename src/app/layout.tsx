@@ -16,7 +16,7 @@ import Navigation from '@/components/navigation/Navigation';
 
 import { routing } from '@/i18n/routing';
 
-import type { FC, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 const ddincon = localFont({
     src: [
@@ -68,7 +68,7 @@ const metadata: Metadata = {
 
 const generateStaticParams = () => routing.locales.map(locale => ({ locale }));
 
-const RootLayout: FC = async ({ children }: { children: ReactNode }) => {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
     const locale = await getLocale();
 
     setRequestLocale(locale);

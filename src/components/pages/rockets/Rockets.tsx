@@ -1,7 +1,6 @@
 import { Suspense, use } from 'react';
 
-// import { useTranslations } from 'next-intl';
-// import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 
 import RocketSlider from '@/components/rocket-slider';
 
@@ -17,6 +16,8 @@ const Rockets = ({ params }: { params: Promise<{ locale: Locale; id: string }> }
     const data: Promise<RocketTypes[]> = apiClient({ query: rockets, key: 'rockets' });
 
     console.log('Rockets data:', id);
+
+    setRequestLocale(locale);
 
     return (
         <>
