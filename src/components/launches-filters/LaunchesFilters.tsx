@@ -3,11 +3,12 @@
 import { useForm } from '@mantine/form';
 
 import { redirect, RedirectType } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { Group, Select } from '@mantine/core';
 
 import type { ComboboxData } from '@mantine/core';
-import type { Locale } from 'next-intl';
+import type { FC } from 'react';
 
 type LaunchesFiltersProps = {
     order: string;
@@ -22,7 +23,10 @@ type FilterMeta = {
     data: ComboboxData;
 };
 
-const LaunchesFilters = ({ defaultValues, locale }: { defaultValues: LaunchesFiltersProps; locale: Locale }) => {
+const LaunchesFilters: FC<{ defaultValues: LaunchesFiltersProps }> = ({ defaultValues }) => {
+    const t = useTranslations('launches.filters');
+    const locale = useLocale();
+
     const form = useForm({
         mode: 'uncontrolled',
         initialValues: {
@@ -36,27 +40,30 @@ const LaunchesFilters = ({ defaultValues, locale }: { defaultValues: LaunchesFil
         },
     });
 
-    const filtersMeta = [
+    const filtersMeta: FilterMeta[] = [
         {
             key: 'sort',
             label: 'Sort by:',
             data: [
-                { value: 'launch_year', label: 'Launch year' },
-                { value: 'launch_success', label: 'Launch success' },
-                { value: 'launch_site', label: 'Launch site' },
+                { value: 'launch_year', label: t('launchYear') },
+                { value: 'launch_success', label: t('launchSuccess') },
+                { value: 'launch_site', label: t('launchSite') },
             ],
         },
         {
             key: 'limit',
-            label: 'Launches per page:',
+            label: `${t('launchesPerPage')}:`,
             data: ['10', '20', '50'],
         },
         {
             key: 'order',
-            label: 'Order by:',
-            data: ['asc', 'desc'],
+            label: `${t('orderBy')}:`,
+            data: [
+                { value: 'asc', label: t('acending') },
+                { value: 'desc', label: t('descending') },
+            ],
         },
-    ] as FilterMeta[];
+    ];
 
     const filters = filtersMeta.map(({ key, label, data }: FilterMeta) => (
         <Select

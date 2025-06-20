@@ -1,5 +1,4 @@
-%stat,
-.stat {
+.info-card {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -9,31 +8,29 @@
     background-color: light-dark(rgb(255 255 255 / 2%), rgb(0 0 0 / 2%));
     backdrop-filter: blur(10px);
 
-    &-loading {
-        @extend %stat;
-
+    &--loading {
         background-color: unset;
         border: 1px solid light-dark(rgb(255 255 255 / 4%), rgb(0 0 0 / 4%));
         box-shadow: none;
         backdrop-filter: unset;
     }
-}
 
-.label {
-    font-family: Outfit, var(--mantine-font-family);
-    font-size: var(--mantine-font-size-xs);
-    font-weight: 700;
-    line-height: 1.2;
-    color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-6));
-    text-transform: uppercase;
-}
+    &__label {
+        font-family: Outfit, var(--mantine-font-family);
+        font-size: var(--mantine-font-size-xs);
+        font-weight: 700;
+        line-height: 1.2;
+        color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-6));
+        text-transform: uppercase;
+    }
 
-.value {
-    font-size: var(--mantine-font-size-sm);
-    font-weight: 700;
-    color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-gray-1));
-}
+    &__value {
+        font-size: var(--mantine-font-size-sm);
+        font-weight: 700;
+        color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-gray-1));
+    }
 
-.icon {
-    color: light-dark(var(--mantine-color-blue-8), var(--mantine-color-blue-4));
+    &__icon {
+        color: light-dark(var(--mantine-color-blue-8), var(--mantine-color-blue-4));
+    }
 }

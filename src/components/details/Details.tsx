@@ -3,8 +3,9 @@ import { use } from 'react';
 import { Text } from '@mantine/core';
 
 import type { RoadsterTypes } from '@/lib/api';
+import type { FC } from 'react';
 
-const Details = ({ asyncData }: { asyncData: Promise<RoadsterTypes> }) => {
+const Details: FC<{ asyncData: Promise<RoadsterTypes> }> = ({ asyncData }) => {
     const data: RoadsterTypes = use(asyncData);
 
     return (

@@ -8,13 +8,14 @@ import InfoCard from '@/components/info-card';
 
 import type { InfoCardProps } from '@/components/info-card';
 import type { RoadsterTypes } from '@/lib/api';
+import type { FC } from 'react';
 
 const roadsterStatsLayoutSettings = {
     cols: { base: 2, xs: 3, sm: 4 },
     spacing: 'md',
 };
 
-const RoadsterStats = ({ asyncData }: { asyncData: Promise<RoadsterTypes> }) => {
+const RoadsterStats: FC<{ asyncData: Promise<RoadsterTypes> }> = ({ asyncData }) => {
     const t = useTranslations('roadster.stats');
     const data: RoadsterTypes = use(asyncData);
 

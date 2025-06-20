@@ -15,6 +15,7 @@ import apiClient from '@/lib/api/client';
 
 import type { LaunchTypes } from '@/lib/api';
 import type { Locale } from 'next-intl';
+import type { FC } from 'react';
 
 const TOTAL_LAUNCHES = 190;
 const LIMITS = [10, 20, 50];
@@ -22,9 +23,9 @@ const SORTS = ['launch_year', 'launch_success', 'launch_site'];
 const ORDERS = ['asc', 'desc'];
 const DEFAULT_SLUGS = ['10', '0', 'launch_year', 'desc'];
 
-const Launches = ({ params }: { params: Promise<{ locale: Locale; slug: string[] }> }) => {
-    const { locale, slug } = use(params);
+const Launches: FC<{ params: Promise<{ locale: Locale; slug: string[] }> }> = ({ params }) => {
     const t = useTranslations('launches');
+    const { locale, slug } = use(params);
 
     const hasAllSlugs = slug && slug.length === 4;
     const isMissingSlugsValues = slug.some((value: string | undefined) => value === 'undefined' || value === undefined);
@@ -33,9 +34,11 @@ const Launches = ({ params }: { params: Promise<{ locale: Locale; slug: string[]
         redirect(`/${locale}/launches/${DEFAULT_SLUGS.join('/')}`, RedirectType.push);
     } else if (hasAllSlugs && isMissingSlugsValues) {
         const updatedSlugsWithValues = slug.map((value: string, index: number) => {
-            if (value === 'undefined' || value === undefined) return DEFAULT_SLUGS[index];
-
-            return value;
+            if (value === 'undefined' || value === undefined) {
+                return DEFAULT_SLUGS[index];
+            } else {
+                return value;
+            }
         });
 
         redirect(`/${locale}/launches/${updatedSlugsWithValues.join('/')}`, RedirectType.push);
@@ -67,16 +70,15 @@ const Launches = ({ params }: { params: Promise<{ locale: Locale; slug: string[]
                 {t('title')}
             </Title>
             <Suspense fallback={<LaunchesFiltersLoading />}>
-                <LaunchesFilters defaultValues={{ limit, offset, sort, order }} locale={locale} />
+                <LaunchesFilters defaultValues={{ limit, offset, sort, order }} />
             </Suspense>
             <Suspense fallback={<LaunchesResultsLoading />}>
-                <LaunchesResults asyncData={data} locale={locale} />
+                <LaunchesResults asyncData={data} />
             </Suspense>
             <Suspense fallback={<LaunchesPaginationLoading />}>
                 <LaunchesPagination
                     totalPages={Math.ceil(TOTAL_LAUNCHES / limit)}
                     currentPage={Math.floor(offset / limit) + 1}
-                    locale={locale}
                     limit={limit}
                     sort={sort}
                     order={order}

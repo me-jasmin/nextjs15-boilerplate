@@ -6,8 +6,9 @@ import TablerIcon from '@/components/tabler-icon';
 
 import type { TablerIconProps } from '@/components/tabler-icon';
 import type { AboutTypes } from '@/lib/api';
+import type { FC } from 'react';
 
-const Social = ({ asyncData }: { asyncData: Promise<AboutTypes> }) => {
+const Social: FC<{ asyncData: Promise<AboutTypes> }> = ({ asyncData }) => {
     const data: AboutTypes = use(asyncData);
 
     const linksMeta = useMemo(

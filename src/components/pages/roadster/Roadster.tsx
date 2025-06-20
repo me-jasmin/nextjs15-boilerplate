@@ -15,10 +15,11 @@ import apiClient from '@/lib/api/client/apiClient';
 
 import type { RoadsterTypes } from '@/lib/api';
 import type { Locale } from 'next-intl';
+import type { FC } from 'react';
 
-const Roadster = ({ params }: { params: Promise<{ locale: Locale }> }) => {
-    const { locale } = use(params);
+const Roadster: FC<{ params: Promise<{ locale: Locale }> }> = ({ params }) => {
     const t = useTranslations('roadster.titles');
+    const { locale } = use(params);
     const data: Promise<RoadsterTypes> = apiClient({ query: roadster, key: 'roadster' });
 
     setRequestLocale(locale);

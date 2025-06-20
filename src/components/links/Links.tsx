@@ -5,8 +5,9 @@ import { Button } from '@mantine/core';
 import TablerIcon from '@/components/tabler-icon';
 
 import type { RoadsterTypes } from '@/lib/api';
+import type { FC } from 'react';
 
-const Links = ({ asyncData }: { asyncData: Promise<RoadsterTypes> }) => {
+const Links: FC<{ asyncData: Promise<RoadsterTypes> }> = ({ asyncData }) => {
     const data: RoadsterTypes = use(asyncData);
 
     return (

@@ -1,6 +1,8 @@
 import { Group, Skeleton } from '@mantine/core';
 
-const LaunchesPaginationLoading = () => (
+import type { FC } from 'react';
+
+const LaunchesPaginationLoading: FC = () => (
     <Group gap="xs" mt="xl">
         <Skeleton width={32} height={32} radius="sm" opacity={0.5} />
         <Skeleton width={32} height={32} radius="sm" opacity={0.5} />

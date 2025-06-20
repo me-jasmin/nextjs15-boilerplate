@@ -1,6 +1,8 @@
+import { FC } from 'react';
+
 import { Group, Skeleton, Stack } from '@mantine/core';
 
-const PeopleLoading = () => (
+const PeopleLoading: FC = () => (
     <Group gap="sm">
         <Skeleton height={40} circle opacity={0.5} />
         <Stack align="flex-start" justify="flex-start" gap={0}>

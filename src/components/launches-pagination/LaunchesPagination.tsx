@@ -1,22 +1,23 @@
 'use client';
 
-// import { Link } from 'next-view-transitions';
 import { redirect, RedirectType } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
 import { Pagination } from '@mantine/core';
 
-import type { Locale } from 'next-intl';
+import type { FC } from 'react';
 
 type LaunchesPaginationProps = {
     totalPages: number;
     currentPage: number;
-    locale: Locale;
     limit: number;
     sort: string;
     order: string;
 };
 
-const LaunchesPagination = ({ totalPages, currentPage, locale, limit, sort, order }: LaunchesPaginationProps) => {
+const LaunchesPagination: FC<LaunchesPaginationProps> = ({ totalPages, currentPage, limit, sort, order }) => {
+    const locale = useLocale();
+
     return (
         <Pagination
             mt="xl"
@@ -24,21 +25,13 @@ const LaunchesPagination = ({ totalPages, currentPage, locale, limit, sort, orde
             total={totalPages}
             value={currentPage}
             onChange={page => redirect(`/${locale}/launches/${limit}/${(page - 1) * limit}/${sort}/${order}`, RedirectType.push)}
+            getControlProps={control => ({
+                'aria-label':
+                    control === 'first' ? 'First pages' : control === 'next' ? 'Next page' : control === 'previous' ? 'Previous page' : 'Last page',
+            })}
+            getItemProps={page => ({ 'aria-label': `Page ${page}` })}
         />
     );
-
-    /*   return (
-        <Pagination
-            mt="xl"
-            size="md"
-            total={totalPages}
-            value={currentPage}
-            getItemProps={page => ({
-                component: Link,
-                href: `/${locale}/launches/${limit}/${(page - 1) * limit}/${sort}/${order}`,
-            })}
-        />
-    ); */
 };
 
 export default LaunchesPagination;

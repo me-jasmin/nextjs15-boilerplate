@@ -1,21 +1,20 @@
 import clsx from 'clsx';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from 'next-view-transitions';
 
 import { Anchor, Badge, Button, Flex, Group, Stack, Text } from '@mantine/core';
 
 import TablerIcon from '@/components/tabler-icon';
 
-import { LaunchTypes } from '@/lib/api';
-
-import type { Locale } from 'next-intl';
+import type { LaunchTypes } from '@/lib/api';
+import type { FC } from 'react';
 
 import classes from '@components/launch-card/launch-card.module.scss';
 
-type LaunchCardProps = LaunchTypes & { t: ReturnType<typeof useTranslations>; className?: string; locale: Locale };
+type LaunchCardProps = LaunchTypes & { className?: string };
 
-const LaunchCard = ({
+const LaunchCard: FC<LaunchCardProps> = ({
     details,
     launch_date_utc: launchDateUtc,
     launch_site: launchSite,
@@ -23,11 +22,12 @@ const LaunchCard = ({
     links,
     rocket,
     mission_name: missionName,
-    t,
-    locale,
     className,
     ...rest
-}: LaunchCardProps) => {
+}) => {
+    const t = useTranslations('launches');
+    const locale = useLocale();
+
     return (
         <Flex className={clsx(classes['launch-card'], className)} key={launchDateUtc} {...rest}>
             {links.flickr_images && links.flickr_images.length > 0 ? (

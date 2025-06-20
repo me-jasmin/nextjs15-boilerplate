@@ -4,7 +4,9 @@ import { useTranslations } from 'next-intl';
 
 import { Button, Text, Title } from '@mantine/core';
 
-const Error = ({ error, reset }: { error: Error; reset(): void }) => {
+import type { FC } from 'react';
+
+const Error: FC<{ error: Error; reset(): void }> = ({ error, reset }) => {
     const t = useTranslations('error');
 
     return (

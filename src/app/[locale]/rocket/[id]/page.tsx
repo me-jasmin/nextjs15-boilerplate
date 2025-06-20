@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { getTranslations } from 'next-intl/server';
 
 import { Badge, Card, Group, SimpleGrid, Text } from '@mantine/core';
@@ -10,11 +7,10 @@ import apiClient from '@/lib/api/client';
 
 import type { RocketTypes } from '@/lib/api';
 
-export default async function RocketsPage({ params }: { params: Promise<{ id: string }> }) {
+const RocketsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const t = await getTranslations('rockets');
     const { id } = await params;
-    console.log('Rocket ID:', id);
-    const data: RocketTypes[] = await apiClient({ query: rocket, variables: { id }, key: 'rocket' });
+    const data: RocketTypes = await apiClient({ query: rocket, variables: { id }, key: 'rocket' });
 
     return (
         <>
@@ -95,4 +91,6 @@ export default async function RocketsPage({ params }: { params: Promise<{ id: st
             </SimpleGrid>
         </>
     );
-}
+};
+
+export default RocketsPage;

@@ -8,7 +8,9 @@ import { Modal as MantineModal } from '@mantine/core';
 
 import { useDisclosure } from '@mantine/hooks';
 
-export default function Modal() {
+import type { FC } from 'react';
+
+const Modal: FC = () => {
     const ref = useRef<HTMLDivElement>(null);
     const router = useRouter();
     const [opened, { open, close }] = useDisclosure(false);
@@ -23,14 +25,11 @@ export default function Modal() {
     };
 
     return (
-        <MantineModal ref={ref} opened={opened} onClose={handleClose} centered overlayProps={{ opacity: 0.55, blur: 3 }} size="md">
-            <div>
-                <h2 className="text-xl font-semibold mb-2">GSAP Modal</h2>
-                <p className="mb-4">This is an animated modal using GSAP and Mantine UI.</p>
-                <button onClick={handleClose} className="px-4 py-2 bg-black text-white rounded hover:bg-gray-800">
-                    Close
-                </button>
-            </div>
+        <MantineModal ref={ref} opened={opened} onClose={handleClose} overlayProps={{ opacity: 0.55, blur: 3 }} size="md" centered>
+            <h2>GSAP Modal</h2>
+            <p>This is an animated modal using GSAP and Mantine UI.</p>
+            <button onClick={handleClose}>Close</button>
         </MantineModal>
     );
-}
+};
+export default Modal;

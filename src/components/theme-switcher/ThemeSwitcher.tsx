@@ -9,11 +9,12 @@ import TablerIcon from '@/components/tabler-icon';
 import { useMounted } from '@mantine/hooks';
 
 import type { MantineColorScheme } from '@mantine/core';
+import type { FC } from 'react';
 
 import navigationClasses from '@/components/navigation/navigation.module.scss';
 import classes from '@/components/theme-switcher/theme-switcher.module.scss';
 
-const ThemeSwitcher = ({ mobile = false }: { mobile?: boolean }) => {
+const ThemeSwitcher: FC<{ mobile?: boolean }> = ({ mobile = false }) => {
     const { colorScheme, setColorScheme } = useMantineColorScheme();
     const mounted = useMounted();
 

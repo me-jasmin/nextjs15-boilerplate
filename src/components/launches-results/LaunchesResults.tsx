@@ -5,24 +5,20 @@ import { use, useMemo, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-import { useTranslations } from 'next-intl';
-
 import { SimpleGrid } from '@mantine/core';
 
 import LaunchCard from '@/components/launch-card';
 
 import type { LaunchTypes } from '@/lib/api';
-import type { Locale } from 'next-intl';
+import type { FC } from 'react';
 
 const launchesResultsLayoutSettings = {
     cols: { base: 1, sm: 2, lg: 3 },
     spacing: 'lg',
 };
 
-const LaunchesResults = ({ asyncData, locale }: { asyncData: Promise<LaunchTypes[]>; locale: Locale }) => {
-    const t = useTranslations('launches');
+const LaunchesResults: FC<{ asyncData: Promise<LaunchTypes[]> }> = ({ asyncData }) => {
     const data: LaunchTypes[] = use(asyncData);
-
     const container = useRef<HTMLDivElement>(null);
     const tl = useRef<gsap.core.Timeline | null>(null);
 
@@ -41,10 +37,7 @@ const LaunchesResults = ({ asyncData, locale }: { asyncData: Promise<LaunchTypes
         { scope: container }
     );
 
-    const launchs = useMemo(
-        () => data.map((launch: LaunchTypes) => <LaunchCard data-animated key={launch.launch_date_utc} t={t} locale={locale} {...launch} />),
-        [data, locale, t]
-    );
+    const launchs = useMemo(() => data.map((launch: LaunchTypes) => <LaunchCard data-animated key={launch.launch_date_utc} {...launch} />), [data]);
 
     return (
         <SimpleGrid {...launchesResultsLayoutSettings} ref={container}>

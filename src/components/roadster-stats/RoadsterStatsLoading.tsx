@@ -3,7 +3,9 @@ import { SimpleGrid } from '@mantine/core';
 import { InfoCardLoading } from '@/components/info-card';
 import { roadsterStatsLayoutSettings } from '@/components/roadster-stats/RoadsterStats';
 
-const RoadsterStatsLoading = () => (
+import type { FC } from 'react';
+
+const RoadsterStatsLoading: FC = () => (
     <SimpleGrid {...roadsterStatsLayoutSettings}>
         <InfoCardLoading />
         <InfoCardLoading />

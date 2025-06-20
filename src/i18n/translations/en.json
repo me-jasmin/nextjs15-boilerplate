@@ -75,6 +75,15 @@
             "title": "Launches",
             "description": "SpaceX launches are missions that involve the launch of rockets and spacecraft for various purposes, including satellite deployment, resupply missions to the International Space Station (ISS), and crewed spaceflights."
         },
+        "filters": {
+            "launchYear": "Launch year",
+            "launchSuccess": "Launch success",
+            "launchSite": "Launch site",
+            "launchesPerPage": "Launches per page",
+            "orderBy": "Order by",
+            "acending": "Ascending",
+            "descending": "Descending"
+        },
         "title": "Launches",
         "status": "Status",
         "successful": "Successful",

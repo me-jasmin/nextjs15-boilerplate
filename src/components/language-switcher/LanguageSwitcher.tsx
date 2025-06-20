@@ -1,5 +1,7 @@
 'use client';
 
+import { useMemo } from 'react';
+
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Link } from 'next-view-transitions';
@@ -8,18 +10,48 @@ import { Accordion, AccordionControl, Group, Menu, Stack, UnstyledButton } from 
 
 import TablerIcon from '@/components/tabler-icon';
 
+import type { FC } from 'react';
+
 import classes from '@/components/navigation/navigation.module.scss';
 import navigationClasses from '@/components/navigation/navigation.module.scss';
 
-const LanguageSwitcher = ({ mobile = false }: { mobile?: boolean }) => {
+const LanguageSwitcher: FC<{ mobile?: boolean }> = ({ mobile = false }) => {
     const t = useTranslations('languageSwitcher');
     const pathname = usePathname();
     const pathnameWithoutLocale = pathname.split('/').slice(2).join('/');
 
-    const languageOptions = [
-        { locale: 'en', label: t('en') },
-        { locale: 'de', label: t('de') },
-    ];
+    const languageMeta = useMemo(
+        () => [
+            { locale: 'en', label: t('en') },
+            { locale: 'de', label: t('de') },
+        ],
+        [t]
+    );
+
+    const launguages = useMemo(
+        () =>
+            languageMeta.map(({ locale, label }) => {
+                if (mobile) {
+                    return (
+                        <UnstyledButton
+                            className={navigationClasses['navigation__link']}
+                            component={Link}
+                            key={locale}
+                            href={`/${locale}/${pathnameWithoutLocale}`}
+                        >
+                            {label}
+                        </UnstyledButton>
+                    );
+                } else {
+                    return (
+                        <Menu.Item component={Link} key={locale} href={`/${locale}/${pathnameWithoutLocale}`}>
+                            {label}
+                        </Menu.Item>
+                    );
+                }
+            }),
+        [languageMeta, mobile, pathnameWithoutLocale]
+    );
 
     if (mobile) {
         return (
@@ -32,18 +64,7 @@ const LanguageSwitcher = ({ mobile = false }: { mobile?: boolean }) => {
                         </Group>
                     </AccordionControl>
                     <Accordion.Panel>
-                        <Stack gap={0}>
-                            {languageOptions.map(({ locale, label }) => (
-                                <UnstyledButton
-                                    className={navigationClasses['navigation__link']}
-                                    component={Link}
-                                    key={locale}
-                                    href={`/${locale}/${pathnameWithoutLocale}`}
-                                >
-                                    {label}
-                                </UnstyledButton>
-                            ))}
-                        </Stack>
+                        <Stack gap={0}>{launguages}</Stack>
                     </Accordion.Panel>
                 </Accordion.Item>
             </Accordion>
@@ -65,13 +86,7 @@ const LanguageSwitcher = ({ mobile = false }: { mobile?: boolean }) => {
                     {t('label')} <TablerIcon icon="chevron-down" size={14} stroke={1.5} />
                 </UnstyledButton>
             </Menu.Target>
-            <Menu.Dropdown>
-                {languageOptions.map(({ locale, label }) => (
-                    <Menu.Item component={Link} key={locale} href={`/${locale}/${pathnameWithoutLocale}`}>
-                        {label}
-                    </Menu.Item>
-                ))}
-            </Menu.Dropdown>
+            <Menu.Dropdown>{launguages}</Menu.Dropdown>
         </Menu>
     );
 };

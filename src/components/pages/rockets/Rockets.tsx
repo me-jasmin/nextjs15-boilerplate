@@ -9,22 +9,18 @@ import apiClient from '@/lib/api/client/apiClient';
 
 import type { RocketTypes } from '@/lib/api';
 import type { Locale } from 'next-intl';
+import type { FC } from 'react';
 
-const Rockets = ({ params }: { params: Promise<{ locale: Locale; id: string }> }) => {
+const Rockets: FC<{ params: Promise<{ locale: Locale; id: string }> }> = ({ params }) => {
     const { locale, id } = use(params);
-    // const t = useTranslations('rockets');
     const data: Promise<RocketTypes[]> = apiClient({ query: rockets, key: 'rockets' });
-
-    console.log('Rockets data:', id);
 
     setRequestLocale(locale);
 
     return (
-        <>
-            <Suspense fallback={<div>Loading...</div>}>
-                <RocketSlider asyncData={data} locale={locale} id={id}></RocketSlider>
-            </Suspense>
-        </>
+        <Suspense fallback={<div>Loading...</div>}>
+            <RocketSlider asyncData={data} locale={locale} id={id}></RocketSlider>
+        </Suspense>
     );
 };
 

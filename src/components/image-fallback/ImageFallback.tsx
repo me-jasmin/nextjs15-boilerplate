@@ -9,10 +9,11 @@ import Image from 'next/image';
 import TablerIcon from '@/components/tabler-icon';
 
 import type { ImageProps } from 'next/image';
+import type { FC } from 'react';
 
 import classes from '@components/image-fallback/image-fallback.module.scss';
 
-const ImageFallback = ({ src, alt, width, height, className, ...rest }: ImageProps) => {
+const ImageFallback: FC<ImageProps> = ({ src, alt, width, height, className, ...rest }) => {
     const [error, setError] = useState(false);
 
     if (error || src === 'fallback') {
@@ -25,15 +26,13 @@ const ImageFallback = ({ src, alt, width, height, className, ...rest }: ImagePro
 
     return (
         <Image
-            {...rest}
             className={clsx(classes['image-fallback'], className)}
             src={src}
             alt={alt}
             width={width}
             height={height}
-            onError={() => {
-                setError(true);
-            }}
+            onError={() => setError(true)}
+            {...rest}
         />
     );
 };

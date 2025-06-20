@@ -9,4 +9,5 @@ import type { RoadsterTypes } from '@/lib/api/roadster.graphql';
 import type { RocketTypes } from '@/lib/api/rocket.graphql';
 
 export { about, launches, roadster, rockets, rocket };
+
 export type { AboutTypes, LaunchTypes, RoadsterTypes, RocketTypes };

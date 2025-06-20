@@ -1,6 +1,8 @@
 import { Group, Skeleton, Stack } from '@mantine/core';
 
-const LaunchesFiltersLoading = () => (
+import type { FC } from 'react';
+
+const LaunchesFiltersLoading: FC = () => (
     <Group gap="sm" mt="xl">
         <Stack gap={2}>
             <Skeleton width="30%" height={16} radius="sm" opacity={0.5} mb="xs" />

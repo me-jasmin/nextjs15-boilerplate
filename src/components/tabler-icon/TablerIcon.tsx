@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { dynamicImports } from '@tabler/icons-react';
 
 import type { IconProps, TablerIcon } from '@tabler/icons-react';
-import type { SVGProps } from 'react';
+import type { FC, SVGProps } from 'react';
 
 type TablerIconProps = Partial<IconProps> & {
     icon: keyof typeof dynamicImports.default;
@@ -14,7 +14,7 @@ type TablerIconProps = Partial<IconProps> & {
 
 const iconCache: Record<string, TablerIcon> = {};
 
-const TablerIcon = ({ icon, size, stroke, title, ...props }: TablerIconProps) => {
+const TablerIcon: FC<TablerIconProps> = ({ icon, size, stroke, title, ...props }) => {
     const [IconComponent, setIconComponent] = useState<TablerIcon | null>(iconCache[icon] || null);
 
     useEffect(() => {

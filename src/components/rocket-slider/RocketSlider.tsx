@@ -12,12 +12,13 @@ import { Badge, Card, Group, Text } from '@mantine/core';
 
 import type { RocketTypes } from '@/lib/api';
 import type { Locale } from 'next-intl';
+import type { FC } from 'react';
 import type { Swiper as SwiperTypes } from 'swiper';
 
 import 'swiper/scss';
 import 'swiper/scss/pagination';
 
-const RocketSlider = ({ asyncData, locale, id }: { asyncData: Promise<RocketTypes[]>; locale: Locale; id: string }) => {
+const RocketSlider: FC<{ asyncData: Promise<RocketTypes[]>; locale: Locale; id: string }> = ({ asyncData, locale, id }) => {
     const t = useTranslations('rockets');
     const data: RocketTypes[] = use(asyncData);
     const ids = useMemo(() => data.map(rocket => rocket.id), [data]);
@@ -63,7 +64,6 @@ const RocketSlider = ({ asyncData, locale, id }: { asyncData: Promise<RocketType
                         <Text mt="xs" size="sm">
                             {rocket.description}
                         </Text>
-
                         <div style={{ marginBottom: '1rem' }}>
                             <div>
                                 <span>{t('firstFlight')}</span>
@@ -85,7 +85,6 @@ const RocketSlider = ({ asyncData, locale, id }: { asyncData: Promise<RocketType
                                 <span>${(rocket.cost_per_launch / 1000000).toFixed(1)}M</span>
                             </div>
                         </div>
-
                         <a href={rocket.wikipedia} target="_blank" rel="noopener noreferrer">
                             {t('readMoreWikipedia')} →
                         </a>

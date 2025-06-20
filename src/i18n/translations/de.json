@@ -57,6 +57,10 @@
         }
     },
     "rockets": {
+        "meta": {
+            "title": "Raketen",
+            "description": "SpaceX-Raketen sind für verschiedene Missionen konzipiert, darunter Satellitenstarts, Versorgungsflüge zur Internationalen Raumstation (ISS) und bemannte Raumflüge. Sie sind bekannt für ihre Wiederverwendbarkeit und Kosteneffizienz."
+        },
         "rocketsTitle": "SpaceX-Raketen",
         "active": "Aktiv",
         "inactive": "Inaktiv",
@@ -70,6 +74,15 @@
         "meta": {
             "title": "Starts",
             "description": "SpaceX-Starts sind Missionen, bei denen Raketen und Raumfahrzeuge für verschiedene Zwecke gestartet werden, darunter Satelliteneinsätze, Versorgungsflüge zur Internationalen Raumstation (ISS) und bemannte Raumflüge."
+        },
+        "filters": {
+            "launchYear": "Startjahr",
+            "launchSuccess": "Start erfolgreich",
+            "launchSite": "Startplatz",
+            "launchesPerPage": "Starts pro Seite",
+            "orderBy": "Sortieren nach",
+            "acending": "Aufsteigend",
+            "descending": "Absteigend"
         },
         "title": "Starts",
         "status": "Status",

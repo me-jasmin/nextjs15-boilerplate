@@ -1,22 +1,6 @@
 @use 'sass:math';
 @use './variables' as *;
 
-@function rem($value) {
-    @return #{math.div(math.div($value, $value * 0 + 1), 16)}rem;
-}
-
-@mixin light {
-    [data-mantine-color-scheme='light'] & {
-        @content;
-    }
-}
-
-@mixin dark {
-    [data-mantine-color-scheme='dark'] & {
-        @content;
-    }
-}
-
 @mixin for-phone-landscape-up {
     @media (width >= $mantine-breakpoint-xs) {
         @content;

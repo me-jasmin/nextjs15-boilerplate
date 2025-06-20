@@ -7,13 +7,14 @@ import { SimpleGrid } from '@mantine/core';
 import People from '@/components/people';
 
 import type { AboutTypes } from '@/lib/api';
+import type { FC } from 'react';
 
 const managementLayoutSettings = {
     cols: { base: 2, xs: 3 },
     spacing: 'md',
 };
 
-const Management = ({ asyncData }: { asyncData: Promise<AboutTypes> }) => {
+const Management: FC<{ asyncData: Promise<AboutTypes> }> = ({ asyncData }) => {
     const t = useTranslations('about.management');
     const data: AboutTypes = use(asyncData);
 
