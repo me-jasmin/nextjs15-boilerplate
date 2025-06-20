@@ -1,0 +1,47 @@
+import { use, useMemo } from 'react';
+
+import { useTranslations } from 'next-intl';
+
+import { SimpleGrid } from '@mantine/core';
+
+import InfoCard from '@/components/info-card';
+
+import type { InfoCardProps } from '@/components/info-card';
+import type { RoadsterTypes } from '@/lib/api';
+
+const roadsterStatsLayoutSettings = {
+    cols: { base: 2, xs: 3, sm: 4 },
+    spacing: 'md',
+};
+
+const RoadsterStats = ({ asyncData }: { asyncData: Promise<RoadsterTypes> }) => {
+    const t = useTranslations('roadster.stats');
+    const data: RoadsterTypes = use(asyncData);
+
+    const roadsterStatsMeta = useMemo(
+        () =>
+            [
+                {
+                    value: new Date(data.launch_date_utc).toLocaleDateString(),
+                    label: t('launchDate'),
+                    icon: 'calendar-up',
+                },
+                { value: (data.period_days / 365).toFixed(2), label: t('yearsInSpace'), icon: 'calendar-share' },
+                { value: `${(data.earth_distance_km / 1000000).toFixed(2)}M km/h`, label: t('distanceFromEarth'), icon: 'ruler-measure' },
+                { value: `${(data.mars_distance_km / 1000000).toFixed(2)}M km/h`, label: t('distanceFromMars'), icon: 'ruler-measure' },
+                { value: `${data.speed_kph.toFixed(2)}km/h`, label: t('currentSpeed'), icon: 'brand-speedtest' },
+                { value: `${data.launch_mass_kg}kg`, label: t('mass'), icon: 'weight' },
+            ] as InfoCardProps[],
+        [data.earth_distance_km, data.launch_date_utc, data.launch_mass_kg, data.mars_distance_km, data.period_days, data.speed_kph, t]
+    );
+
+    const roadsterStats = useMemo(
+        () => roadsterStatsMeta.map(({ value, label, icon }) => <InfoCard key={label} {...{ value, label, icon }} />),
+        [roadsterStatsMeta]
+    );
+
+    return <SimpleGrid {...roadsterStatsLayoutSettings}>{roadsterStats}</SimpleGrid>;
+};
+
+export default RoadsterStats;
+export { roadsterStatsLayoutSettings };

@@ -1,10 +1,10 @@
 import { SimpleGrid } from '@mantine/core';
 
-import { infoLayout } from '@/components/info';
+import { infoLayoutSettings } from '@/components/info';
 import { InfoCardLoading } from '@/components/info-card';
 
 const InfoLoading = () => (
-    <SimpleGrid {...infoLayout}>
+    <SimpleGrid {...infoLayoutSettings}>
         <InfoCardLoading />
         <InfoCardLoading />
         <InfoCardLoading />

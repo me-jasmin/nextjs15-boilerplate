@@ -1,0 +1,41 @@
+.launch-card {
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--mantine-shadow-xl);
+
+    @include global.panel-background;
+
+    @include global.for-tablet-landscape-up {
+        flex-direction: row;
+    }
+
+    &__image-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 20rem;
+        background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-gray-8));
+        opacity: 0.75;
+
+        @include global.for-tablet-landscape-up {
+            width: 40%;
+            height: 100%;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 20rem;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: var(--mantine-radius-md) 0 0 var(--mantine-radius-md);
+
+        @include global.for-tablet-landscape-up {
+            width: 40%;
+            height: 100%;
+        }
+    }
+}

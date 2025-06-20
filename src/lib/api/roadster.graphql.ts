@@ -1,4 +1,4 @@
-export type Roadster = {
+type RoadsterTypes = {
     details: string;
     earth_distance_km: number;
     launch_date_utc: string;
@@ -9,8 +9,8 @@ export type Roadster = {
     wikipedia: string;
 };
 
-export const Roadster = `
-query RoadsterInfo {
+const roadster = `
+query Roadster {
     roadster {
         details
         earth_distance_km
@@ -22,3 +22,6 @@ query RoadsterInfo {
         wikipedia
     }
 }`;
+
+export default roadster;
+export type { RoadsterTypes };

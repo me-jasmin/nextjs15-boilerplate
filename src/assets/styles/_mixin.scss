@@ -1,5 +1,4 @@
 @use 'sass:math';
-
 @use './variables' as *;
 
 @function rem($value) {
@@ -18,7 +17,7 @@
     }
 }
 
-@mixin for-phone-up {
+@mixin for-phone-landscape-up {
     @media (width >= $mantine-breakpoint-xs) {
         @content;
     }
@@ -46,4 +45,28 @@
     @media (width >= $mantine-breakpoint-xl) {
         @content;
     }
+}
+
+@mixin background-overlay($image: null) {
+    @if $image {
+        background:
+            linear-gradient(90deg, light-dark($overlay-from-color, $overlay-from-color-dark), light-dark($overlay-to-color, $overlay-to-color-dark)),
+            url($image) no-repeat center center / cover fixed;
+    } @else {
+        background: linear-gradient(
+            90deg,
+            light-dark($overlay-from-color, $overlay-from-color-dark),
+            light-dark($overlay-to-color, $overlay-to-color-dark)
+        );
+    }
+}
+
+@mixin panel-background {
+    background: linear-gradient(
+        30deg,
+        light-dark($hero-background-color-1, $hero-background-color-1-dark) 1%,
+        light-dark($hero-background-color-2, $hero-background-color-2-dark) 135%
+    );
+    box-shadow: var(--mantine-shadow-xl);
+    backdrop-filter: blur(0.5rem);
 }

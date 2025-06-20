@@ -1,0 +1,91 @@
+'use client';
+
+import { useForm } from '@mantine/form';
+
+import { redirect, RedirectType } from 'next/navigation';
+
+import { Group, Select } from '@mantine/core';
+
+import type { ComboboxData } from '@mantine/core';
+import type { Locale } from 'next-intl';
+
+type LaunchesFiltersProps = {
+    order: string;
+    limit: number;
+    offset: number;
+    sort: string;
+};
+
+type FilterMeta = {
+    key: string;
+    label: string;
+    data: ComboboxData;
+};
+
+const LaunchesFilters = ({ defaultValues, locale }: { defaultValues: LaunchesFiltersProps; locale: Locale }) => {
+    const form = useForm({
+        mode: 'uncontrolled',
+        initialValues: {
+            limit: defaultValues.limit.toString(),
+            sort: defaultValues.sort.toString(),
+            order: defaultValues.order.toString(),
+        },
+
+        onValuesChange: ({ limit, sort, order }) => {
+            redirect(`/${locale}/launches/${limit}/${defaultValues.offset}/${sort}/${order}`, RedirectType.push);
+        },
+    });
+
+    const filtersMeta = [
+        {
+            key: 'sort',
+            label: 'Sort by:',
+            data: [
+                { value: 'launch_year', label: 'Launch year' },
+                { value: 'launch_success', label: 'Launch success' },
+                { value: 'launch_site', label: 'Launch site' },
+            ],
+        },
+        {
+            key: 'limit',
+            label: 'Launches per page:',
+            data: ['10', '20', '50'],
+        },
+        {
+            key: 'order',
+            label: 'Order by:',
+            data: ['asc', 'desc'],
+        },
+    ] as FilterMeta[];
+
+    const filters = filtersMeta.map(({ key, label, data }: FilterMeta) => (
+        <Select
+            size="md"
+            label={label}
+            pointer={true}
+            clearable={false}
+            withAsterisk={false}
+            allowDeselect={false}
+            withCheckIcon={false}
+            style={{ width: '150px' }}
+            data={data}
+            key={form.key(key)}
+            {...form.getInputProps(key)}
+            comboboxProps={{
+                withinPortal: true,
+                position: 'bottom-end',
+                withArrow: true,
+                transitionProps: { transition: 'skew-up', duration: 100, exitDuration: 0 },
+            }}
+        />
+    ));
+
+    return (
+        <Group gap="sm" component="form" mb="lg" align="flex-end">
+            {filters}
+        </Group>
+    );
+};
+
+export default LaunchesFilters;
+export type { LaunchesFiltersProps };

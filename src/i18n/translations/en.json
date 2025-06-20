@@ -1,0 +1,104 @@
+{
+    "navigation": {
+        "about": "About us",
+        "rockets": "Rockets",
+        "launches": "Launches",
+        "roadster": "Roadster"
+    },
+    "languageSwitcher": {
+        "label": "Language",
+        "en": "English",
+        "de": "Deutsch"
+    },
+    "about": {
+        "meta": {
+            "title": "Welcome",
+            "description": "SpaceX is an American aerospace manufacturer and space transport services company founded by Elon Musk in 2002. Its mission is to reduce space transportation costs to enable the colonization of Mars."
+        },
+        "titles": {
+            "intro": "Welcome to SpaceX",
+            "management": "Management",
+            "info": "Info",
+            "social": "Social Media"
+        },
+        "info": {
+            "founder": "Founder",
+            "founded": "Founded",
+            "employees": "Employees",
+            "valuation": "Valuation",
+            "testSites": "Test Sites",
+            "launchSites": "Launch Sites",
+            "vehicles": "Vehicles"
+        },
+        "management": {
+            "ceo": "CEO",
+            "cto": "CTO",
+            "coo": "COO",
+            "ctoPropulsion": "CTO Propulsion"
+        }
+    },
+    "roadster": {
+        "meta": {
+            "title": "Roadster",
+            "description": "The Tesla Roadster is a sports car that was launched into space by SpaceX in 2018. It serves as a demonstration of the capabilities of the Falcon Heavy rocket."
+        },
+        "titles": {
+            "intro": "Roadster",
+            "stats": "Stats",
+            "readMore": "Read more on Wikipedia"
+        },
+        "stats": {
+            "launchDate": "Launch Date",
+            "yearsInSpace": "Years in Space",
+            "distanceFromEarth": "Distance from earth",
+            "distanceFromMars": "Distance from mars",
+            "currentSpeed": "Current speed",
+            "mass": "Mass"
+        }
+    },
+    "rockets": {
+        "meta": {
+            "title": "Rockets",
+            "description": "SpaceX rockets are designed for various missions, including satellite launches, resupply missions to the International Space Station (ISS), and crewed spaceflights. They are known for their reusability and cost-effectiveness."
+        },
+        "rocketsTitle": "SpaceX Rockets",
+        "active": "Active",
+        "inactive": "Inactive",
+        "firstFlight": "First Flight",
+        "country": "Country",
+        "successRate": "Success Rate",
+        "costPerLaunch": "Cost Per Launch",
+        "readMoreWikipedia": "Read more on Wikipedia"
+    },
+    "launches": {
+        "meta": {
+            "title": "Launches",
+            "description": "SpaceX launches are missions that involve the launch of rockets and spacecraft for various purposes, including satellite deployment, resupply missions to the International Space Station (ISS), and crewed spaceflights."
+        },
+        "title": "Launches",
+        "status": "Status",
+        "successful": "Successful",
+        "failed": "Failed",
+        "unknown": "Unknown",
+        "launchSite": "Launch site",
+        "noDetails": "No details available",
+        "quickLinks": "Quick links",
+        "missionPatch": "Mission Patch",
+        "article": "Article",
+        "video": "Video",
+        "wikipedia": "Wikipedia"
+    },
+    "other": {
+        "readMoreWikipedia": "Read more on Wikipedia"
+    },
+    "notFound": {
+        "title": "404 - Page Not Found",
+        "message": "This page could not be found.",
+        "returnHome": "Return to home page"
+    },
+    "error": {
+        "somethingWentWrong": "Something went wrong",
+        "unexpectedError": "An unexpected error occurred",
+        "tryAgain": "Try again"
+    }
+}

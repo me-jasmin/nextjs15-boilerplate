@@ -1,37 +1,42 @@
+@use 'sass:string';
 @forward './variables';
 @forward './mixin';
 
-@use './fonts.css' as *;
+@function raw-calc($expr) {
+    @return string.unquote('calc(#{$expr})');
+}
 
+.html,
 .body {
-    width: calc(100vw - (100vw - 100%));
-    min-height: 100vh;
-    scroll-behavior: smooth;
+    width: 100%;
+    min-height: 100%;
 }
 
 .main-container {
     position: relative;
+    width: calc(100vw - (100vw - 100%));
 
     > div {
-        transform-style: preserve-3d;
-        overflow: hidden;
         transition:
-            opacity 0.5s ease-in-out,
-            filter 0.5s ease-in-out,
-            transform 0.5s ease-in-out;
+            opacity 0.2s ease-in-out,
+            filter 0.2s ease-in-out,
+            transform 0.2s ease-in-out;
     }
 }
 
-.navigation-opened {
-    overflow: hidden;
-
-    body {
+/* stylelint-disable-next-line selector-class-pattern */
+.navigation--opened {
+    .body {
         overflow: hidden;
     }
 
-    .main-container > div {
-        opacity: 0.6;
-        filter: blur(1rem) brightness(50%);
-        transform: scale(1.2);
+    & .main-container {
+        width: 100%;
+
+        > div {
+            opacity: 0.6;
+            filter: blur(1rem) brightness(50%);
+            transform: scale(1.2);
+        }
     }
 }

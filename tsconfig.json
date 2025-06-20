@@ -27,7 +27,7 @@
             "@layouts/*": ["./src/components/layouts/*"],
             "@hooks/*": ["./src/hooks/*"],
             "@styles/*": ["./src/assets/styles/*"],
-            "@/images/*": ["./src/assets/images/*"],
+            "@images/*": ["./src/assets/images/*"],
             "@lib/*": ["./src/lib/*"],
             "@stores/*": ["./src/stores/*"],
             "@api/*": ["./src/api/*"],

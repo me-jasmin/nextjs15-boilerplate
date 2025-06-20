@@ -2,17 +2,32 @@
 
 import { useMemo } from 'react';
 
-import { ActionIcon, Group, Tooltip, useMantineColorScheme } from '@mantine/core';
+import { ActionIcon, Group, Tooltip, UnstyledButton, useMantineColorScheme } from '@mantine/core';
 
 import TablerIcon from '@/components/tabler-icon';
+
+import { useMounted } from '@mantine/hooks';
 
 import type { MantineColorScheme } from '@mantine/core';
 
 import navigationClasses from '@/components/navigation/navigation.module.scss';
 import classes from '@/components/theme-switcher/theme-switcher.module.scss';
 
-export default function ThemeSwitcher({ mobile = false }: { mobile?: boolean }) {
+const ThemeSwitcher = ({ mobile = false }: { mobile?: boolean }) => {
     const { colorScheme, setColorScheme } = useMantineColorScheme();
+    const mounted = useMounted();
+
+    const colorSchemeMeta = useMemo(() => {
+        const iconProps = { stroke: mobile ? 2 : 1.5, size: mobile ? 36 : 24 };
+        const iconLabel = colorScheme === 'light' ? 'Light mode' : colorScheme === 'dark' ? 'Dark mode' : 'System';
+        const icons = {
+            light: <TablerIcon icon="sun" {...iconProps} />,
+            dark: <TablerIcon icon="moon" {...iconProps} />,
+            auto: <TablerIcon icon="device-laptop" {...iconProps} />,
+        };
+
+        return { icon: mounted ? icons[colorScheme] : <></>, label: mounted ? iconLabel : '' };
+    }, [colorScheme, mobile, mounted]);
 
     const nextColorScheme = useMemo<MantineColorScheme>(() => {
         const modes: MantineColorScheme[] = ['auto', 'light', 'dark'];
@@ -22,32 +37,15 @@ export default function ThemeSwitcher({ mobile = false }: { mobile?: boolean }) 
         return modes[nextModeIndex];
     }, [colorScheme]);
 
-    const colorSchemeMeta = useMemo(() => {
-        const iconProps = {
-            stroke: mobile ? 2 : 1.5,
-            size: mobile ? 40 : 24,
-        };
-
-        const iconLabel = colorScheme === 'light' ? 'Light mode' : colorScheme === 'dark' ? 'Dark mode' : 'System';
-
-        const icons = {
-            light: <TablerIcon name="sun" {...iconProps} />,
-            dark: <TablerIcon name="moon" {...iconProps} />,
-            auto: <TablerIcon name="device-laptop" {...iconProps} />,
-        };
-
-        return { icon: icons[colorScheme], label: iconLabel };
-    }, [colorScheme, mobile]);
-
-    if (!colorScheme) {
-        console.warn('Color scheme is not defined. Please check your Mantine configuration.');
-
-        return null;
-    }
-
     if (mobile) {
         return (
-            <Group className={navigationClasses.link} onClick={() => setColorScheme(nextColorScheme)} gap="xs">
+            <Group
+                className={navigationClasses['navigation__link']}
+                onClick={() => setColorScheme(nextColorScheme)}
+                component={UnstyledButton}
+                data-animated
+                gap="xs"
+            >
                 {colorSchemeMeta.label}
                 {colorSchemeMeta.icon}
             </Group>
@@ -68,4 +66,6 @@ export default function ThemeSwitcher({ mobile = false }: { mobile?: boolean }) 
             </ActionIcon>
         </Tooltip>
     );
-}
+};
+
+export default ThemeSwitcher;

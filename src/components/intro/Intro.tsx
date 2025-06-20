@@ -2,10 +2,10 @@ import { use } from 'react';
 
 import { Text } from '@mantine/core';
 
-import type { CompanyInfo } from '@/lib/api/companyInfo.graphql';
+import type { AboutTypes } from '@/lib/api';
 
-const Intro = ({ asyncData }: { asyncData: Promise<CompanyInfo> }) => {
-    const data: CompanyInfo = use(asyncData);
+const Intro = ({ asyncData }: { asyncData: Promise<AboutTypes> }) => {
+    const data: AboutTypes = use(asyncData);
 
     return (
         <>

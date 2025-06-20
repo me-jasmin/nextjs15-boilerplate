@@ -7,31 +7,31 @@ import { dynamicImports } from '@tabler/icons-react';
 import type { IconProps, TablerIcon } from '@tabler/icons-react';
 import type { SVGProps } from 'react';
 
-export type TablerIconProps = Partial<IconProps> & {
-    name: keyof typeof dynamicImports.default;
+type TablerIconProps = Partial<IconProps> & {
+    icon: keyof typeof dynamicImports.default;
     [key: string]: SVGProps<SVGSVGElement>[keyof SVGProps<SVGSVGElement>];
 };
 
 const iconCache: Record<string, TablerIcon> = {};
 
-const TablerIcon = ({ name, size, stroke, title, ...props }: TablerIconProps) => {
-    const [IconComponent, setIconComponent] = useState<TablerIcon | null>(iconCache[name] || null);
+const TablerIcon = ({ icon, size, stroke, title, ...props }: TablerIconProps) => {
+    const [IconComponent, setIconComponent] = useState<TablerIcon | null>(iconCache[icon] || null);
 
     useEffect(() => {
         (async () => {
-            if (!iconCache[name]) {
+            if (!iconCache[icon]) {
                 try {
-                    const { default: Icon } = await dynamicImports.default[name]();
-                    iconCache[name] = Icon;
+                    const { default: Icon } = await dynamicImports.default[icon]();
+                    iconCache[icon] = Icon;
                     setIconComponent(() => Icon);
                 } catch (error) {
-                    console.error(`Tabler icon "${name}" not found.`, error);
+                    console.error(`Tabler icon "${icon}" not found.`, error);
                 }
             } else {
-                setIconComponent(() => iconCache[name]);
+                setIconComponent(() => iconCache[icon]);
             }
         })();
-    }, [name]);
+    }, [icon]);
 
     if (!IconComponent) return null;
 
@@ -39,3 +39,4 @@ const TablerIcon = ({ name, size, stroke, title, ...props }: TablerIconProps) =>
 };
 
 export default TablerIcon;
+export type { TablerIconProps };

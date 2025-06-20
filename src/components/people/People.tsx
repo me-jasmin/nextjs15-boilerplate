@@ -1,6 +1,6 @@
 import { Avatar, Group, Stack, Text } from '@mantine/core';
 
-export type PeopleProps = {
+type PeopleProps = {
     name: string;
     title: string;
     avatar: string;
@@ -23,3 +23,4 @@ const People = ({ name, title, avatar }: PeopleProps) => {
 };
 
 export default People;
+export type { PeopleProps };

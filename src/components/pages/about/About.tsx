@@ -1,7 +1,5 @@
 import { Suspense, use } from 'react';
 
-import clsx from 'clsx';
-
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -12,28 +10,23 @@ import Intro, { IntroLoading } from '@/components/intro';
 import Management, { ManagementLoading } from '@/components/management';
 import Social, { SocialLoading } from '@/components/social';
 
-import { companyInfo } from '@/lib/api/companyInfo.graphql';
-import getData from '@/lib/getData';
+import { about } from '@/lib/api';
+import apiClient from '@/lib/api/client/apiClient';
 
-import type { CompanyInfo } from '@/lib/api/companyInfo.graphql';
+import type { AboutTypes } from '@/lib/api';
 import type { Locale } from 'next-intl';
 
-type AboutProps = {
-    params: Promise<{ locale: Locale }>;
-};
-
-const About = ({ params }: AboutProps) => {
+const About = ({ params }: { params: Promise<{ locale: Locale }> }) => {
     const { locale } = use(params);
-
-    const t = useTranslations('about');
-    const data: Promise<CompanyInfo> = getData({ query: companyInfo, key: 'company' });
+    const t = useTranslations('about.titles');
+    const data: Promise<AboutTypes> = apiClient({ query: about, key: 'company' });
 
     setRequestLocale(locale);
 
     return (
         <>
             <Title order={1} mb="md">
-                {t('title')}
+                {t('intro')}
             </Title>
             <Suspense fallback={<IntroLoading />}>
                 <Intro asyncData={data} />
@@ -42,7 +35,7 @@ const About = ({ params }: AboutProps) => {
             <Divider my="xs" opacity={0.3} />
             <Space h="xl" />
             <Title order={2} fw={600} mb="md">
-                Management
+                {t('management')}
             </Title>
             <Suspense fallback={<ManagementLoading />}>
                 <Management asyncData={data} />
@@ -51,7 +44,7 @@ const About = ({ params }: AboutProps) => {
             <Divider my="xs" opacity={0.3} />
             <Space h="xl" />
             <Title order={3} fw={600} mb="md">
-                Info
+                {t('info')}
             </Title>
             <Suspense fallback={<InfoLoading />}>
                 <Info asyncData={data} />
@@ -60,7 +53,7 @@ const About = ({ params }: AboutProps) => {
             <Divider my="xs" opacity={0.3} />
             <Space h="xl" />
             <Title order={3} fw={600} mb="md">
-                Social
+                {t('social')}
             </Title>
             <Suspense fallback={<SocialLoading />}>
                 <Social asyncData={data} />

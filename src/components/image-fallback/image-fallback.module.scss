@@ -1,0 +1,21 @@
+.image-fallback {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-spacing: 1rem;
+    border: 2px solid var(--mantine-color-blue-5);
+    border-radius: var(--mantine-radius-md);
+
+    &-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        padding: var(--mantine-spacing-xs);
+        border-spacing: 1rem;
+        background: var(--mantine-color-gray-5);
+        border: 2px solid var(--mantine-color-blue-5);
+        border-radius: var(--mantine-radius-md);
+    }
+}

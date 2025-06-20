@@ -1,0 +1,100 @@
+{
+    "navigation": {
+        "about": "Über uns",
+        "rockets": "Raketen",
+        "launches": "Starts",
+        "roadster": "Roadster"
+    },
+    "languageSwitcher": {
+        "label": "Sprache",
+        "en": "Englisch",
+        "de": "Deutsch"
+    },
+    "about": {
+        "meta": {
+            "title": "Willkommen",
+            "description": "SpaceX ist ein amerikanisches Luft- und Raumfahrtunternehmen, das 2002 von Elon Musk gegründet wurde. Seine Mission ist es, die Kosten des Weltraumtransports zu senken, um die Kolonisierung des Mars zu ermöglichen."
+        },
+        "titles": {
+            "intro": "Willkommen bei SpaceX",
+            "management": "Führung",
+            "info": "Informationen",
+            "social": "Soziale Medien"
+        },
+        "info": {
+            "founder": "Gründer",
+            "founded": "Gegründet",
+            "employees": "Mitarbeiter",
+            "valuation": "Bewertung",
+            "testSites": "Testgelände",
+            "launchSites": "Startplätze",
+            "vehicles": "Fahrzeuge"
+        },
+        "management": {
+            "ceo": "CEO",
+            "cto": "CTO",
+            "coo": "COO",
+            "ctoPropulsion": "CTO Antrieb"
+        }
+    },
+    "roadster": {
+        "meta": {
+            "title": "Roadster",
+            "description": "Der Tesla Roadster ist ein Sportwagen, der 2018 von SpaceX ins All geschossen wurde. Er demonstriert die Fähigkeiten der Falcon Heavy-Rakete."
+        },
+        "titles": {
+            "intro": "Roadster",
+            "stats": "Statistiken",
+            "readMore": "Mehr auf Wikipedia lesen"
+        },
+        "stats": {
+            "launchDate": "Startdatum",
+            "yearsInSpace": "Jahre im All",
+            "distanceFromEarth": "Entfernung von der Erde",
+            "distanceFromMars": "Entfernung vom Mars",
+            "currentSpeed": "Aktuelle Geschwindigkeit",
+            "mass": "Masse"
+        }
+    },
+    "rockets": {
+        "rocketsTitle": "SpaceX-Raketen",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "firstFlight": "Erster Flug",
+        "country": "Land",
+        "successRate": "Erfolgsrate",
+        "costPerLaunch": "Kosten pro Start",
+        "readMoreWikipedia": "Mehr auf Wikipedia lesen"
+    },
+    "launches": {
+        "meta": {
+            "title": "Starts",
+            "description": "SpaceX-Starts sind Missionen, bei denen Raketen und Raumfahrzeuge für verschiedene Zwecke gestartet werden, darunter Satelliteneinsätze, Versorgungsflüge zur Internationalen Raumstation (ISS) und bemannte Raumflüge."
+        },
+        "title": "Starts",
+        "status": "Status",
+        "successful": "Erfolgreich",
+        "failed": "Fehlgeschlagen",
+        "unknown": "Unbekannt",
+        "launchSite": "Startplatz",
+        "noDetails": "Keine Details verfügbar",
+        "quickLinks": "Schnellzugriff",
+        "missionPatch": "Missionsabzeichen",
+        "article": "Artikel",
+        "video": "Video",
+        "wikipedia": "Wikipedia"
+    },
+    "other": {
+        "readMoreWikipedia": "Mehr auf Wikipedia lesen"
+    },
+    "notFound": {
+        "title": "404 - Seite nicht gefunden",
+        "message": "Diese Seite konnte nicht gefunden werden.",
+        "returnHome": "Zur Startseite zurückkehren"
+    },
+    "error": {
+        "somethingWentWrong": "Etwas ist schiefgelaufen",
+        "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten",
+        "tryAgain": "Erneut versuchen"
+    }
+}

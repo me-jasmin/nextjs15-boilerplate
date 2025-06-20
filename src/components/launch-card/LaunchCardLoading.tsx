@@ -1,0 +1,42 @@
+import clsx from 'clsx';
+
+import { Flex, Group, Skeleton, Stack } from '@mantine/core';
+
+import TablerIcon from '@/components/tabler-icon';
+
+import classes from '@components/launch-card/launch-card.module.scss';
+
+const LaunchCardLoading = () => {
+    return (
+        <Flex className={clsx(classes['launch-card'])}>
+            <div className={classes['launch-card__image-placeholder']}>
+                <TablerIcon icon="rocket" stroke={1.5} size={150} opacity={0.5} />
+            </div>
+            <Stack gap={0} p="lg" flex={1}>
+                <Stack gap={0} mb="md">
+                    <Group gap="xs" mb="md" align="center">
+                        <Skeleton width={30} height={10} radius="sm" opacity={0.5} />
+                        <Skeleton width={70} height={20} radius="sm" opacity={0.5} />
+                        <Skeleton width={50} height={10} radius="sm" opacity={0.5} ml="auto" />
+                    </Group>
+                    <Skeleton width="30%" height={16} radius="sm" opacity={0.5} mb="xs" />
+                    <Skeleton width={60} height={8} radius="sm" opacity={0.5} />
+                </Stack>
+
+                <Skeleton width={80} height={8} radius="sm" opacity={0.5} mb="xl" />
+                <Skeleton width="100%" height={10} radius="sm" opacity={0.5} mb="xs" />
+                <Skeleton width="90%" height={10} radius="sm" opacity={0.5} mb="xs" />
+                <Skeleton width="85%" height={10} radius="sm" opacity={0.5} mb="xs" />
+                <Skeleton width="80%" height={10} radius="sm" opacity={0.5} mb="xl" />
+                <Skeleton width={100} height={8} radius="sm" opacity={0.5} mb="xs" />
+                <Group gap="xs">
+                    <Skeleton width={110} height={36} radius="sm" opacity={0.5} mb="md" />
+                    <Skeleton width={110} height={36} radius="sm" opacity={0.5} mb="md" />
+                    <Skeleton width={100} height={36} radius="sm" opacity={0.5} mb="md" />
+                </Group>
+            </Stack>
+        </Flex>
+    );
+};
+
+export default LaunchCardLoading;

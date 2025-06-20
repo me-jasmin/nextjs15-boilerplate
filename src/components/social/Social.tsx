@@ -1,78 +1,42 @@
-import { use } from 'react';
-
-
+import { use, useMemo } from 'react';
 
 import { Button, Group } from '@mantine/core';
 
-
-
 import TablerIcon from '@/components/tabler-icon';
 
+import type { TablerIconProps } from '@/components/tabler-icon';
+import type { AboutTypes } from '@/lib/api';
 
+const Social = ({ asyncData }: { asyncData: Promise<AboutTypes> }) => {
+    const data: AboutTypes = use(asyncData);
 
-import type { CompanyInfo } from '@/lib/api/companyInfo.graphql';
-
-
-
-
-
-const Social = ({ asyncData }: { asyncData: Promise<CompanyInfo> }) => {
-    const data: CompanyInfo = use(asyncData);
-
-    return (
-        <>
-            <Group gap="xs">
-                <Button
-                    leftSection={<TablerIcon name="brand-wikipedia" size={20} stroke={1.5} />}
-                    href={data.links.website}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    component="a"
-                    color="blue"
-                    variant="filled"
-                    size="sm"
-                >
-                    SpaceX
-                </Button>
-                <Button
-                    leftSection={<TablerIcon name="brand-x" size={20} stroke={1.5} />}
-                    href={data.links.twitter}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    component="a"
-                    color="blue"
-                    variant="filled"
-                    size="sm"
-                >
-                    Twitter
-                </Button>
-                <Button
-                    leftSection={<TablerIcon name="brand-flickr" size={20} stroke={1.5} />}
-                    href={data.links.flickr}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    component="a"
-                    color="blue"
-                    variant="filled"
-                    size="sm"
-                >
-                    Flickr
-                </Button>
-                <Button
-                    leftSection={<TablerIcon name="brand-x" size={20} stroke={1.5} />}
-                    href={data.links.elon_twitter}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    component="a"
-                    color="blue"
-                    variant="filled"
-                    size="sm"
-                >
-                    Twitter Elon Musk
-                </Button>
-            </Group>
-        </>
+    const linksMeta = useMemo(
+        () =>
+            [
+                { name: 'SpaceX', url: data.links.website, icon: 'globe' },
+                { name: 'Twitter', url: data.links.twitter, icon: 'brand-x' },
+                { name: 'Flickr', url: data.links.flickr, icon: 'brand-flickr' },
+                { name: 'Twitter Elon Musk', url: data.links.elon_twitter, icon: 'brand-x' },
+            ] as { name: string; url: string; icon: TablerIconProps['icon'] }[],
+        [data.links.elon_twitter, data.links.flickr, data.links.twitter, data.links.website]
     );
+
+    const links = linksMeta.map(({ name, url, icon }) => (
+        <Button
+            key={name}
+            leftSection={<TablerIcon icon={icon} size={16} stroke={1.5} />}
+            href={url}
+            rel="noopener noreferrer"
+            target="_blank"
+            component="a"
+            variant="light"
+            size="xs"
+        >
+            {name}
+        </Button>
+    ));
+
+    return <Group gap="xs">{links}</Group>;
 };
 
 export default Social;

@@ -1,8 +1,17 @@
-import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-    title: 'Roadster',
-    description: 'Information about the Tesla Roadster launched by SpaceX.',
+import type { Locale } from 'next-intl';
+
+const generateMetadata = async ({ params }: { params: Promise<{ locale: Locale }> }) => {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'roadster.meta' });
+
+    return {
+        title: t('title'),
+        description: t('description'),
+    };
 };
 
 export { default } from '@/components/pages/roadster';
+
+export { generateMetadata };

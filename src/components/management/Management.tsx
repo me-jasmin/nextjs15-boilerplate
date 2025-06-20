@@ -6,23 +6,23 @@ import { SimpleGrid } from '@mantine/core';
 
 import People from '@/components/people';
 
-import type { CompanyInfo } from '@/lib/api/companyInfo.graphql';
+import type { AboutTypes } from '@/lib/api';
 
-export const managementLayout = {
-    cols: { base: 1, xs: 2, sm: 3, md: 4, lg: 3 },
-    spacing: { base: 'md' },
+const managementLayoutSettings = {
+    cols: { base: 2, xs: 3 },
+    spacing: 'md',
 };
 
-const Management = ({ asyncData }: { asyncData: Promise<CompanyInfo> }) => {
-    const t = useTranslations('about');
-    const data: CompanyInfo = use(asyncData);
+const Management = ({ asyncData }: { asyncData: Promise<AboutTypes> }) => {
+    const t = useTranslations('about.management');
+    const data: AboutTypes = use(asyncData);
 
     const managementMeta = useMemo(
         () => [
             { name: data.ceo, title: t('ceo'), avatar: '/images/elon-musk_cropped.webp' },
             { name: data.coo, title: t('coo'), avatar: '/images/gwynne-shotwell_cropped.webp' },
             { name: data.cto, title: t('cto'), avatar: '/images/elon-musk_cropped.webp' },
-            { name: data.cto_propulsion, title: 'CTO Propulsion', avatar: '/images/tom-mueller_cropped.webp' },
+            { name: data.cto_propulsion, title: t('ctoPropulsion'), avatar: '/images/tom-mueller_cropped.webp' },
         ],
         [data.ceo, data.coo, data.cto, data.cto_propulsion, t]
     );
@@ -32,7 +32,8 @@ const Management = ({ asyncData }: { asyncData: Promise<CompanyInfo> }) => {
         [managementMeta]
     );
 
-    return <SimpleGrid {...managementLayout}>{management}</SimpleGrid>;
+    return <SimpleGrid {...managementLayoutSettings}>{management}</SimpleGrid>;
 };
 
 export default Management;
+export { managementLayoutSettings };
