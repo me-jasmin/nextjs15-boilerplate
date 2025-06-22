@@ -1,4 +1,4 @@
-import { Suspense, use } from 'react';
+import { use } from 'react';
 
 import { setRequestLocale } from 'next-intl/server';
 
@@ -13,15 +13,11 @@ import type { FC } from 'react';
 
 const Rockets: FC<{ params: Promise<{ locale: Locale; id: string }> }> = ({ params }) => {
     const { locale, id } = use(params);
-    const data: Promise<RocketTypes[]> = apiClient({ query: rockets, key: 'rockets' });
-
+    const data: RocketTypes[] = use(apiClient({ query: rockets, key: 'rockets' }));
+    console.log('Rockets data:', data);
     setRequestLocale(locale);
 
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <RocketSlider asyncData={data} locale={locale} id={id}></RocketSlider>
-        </Suspense>
-    );
+    return <RocketSlider data={data} locale={locale} id={id}></RocketSlider>;
 };
 
 export default Rockets;

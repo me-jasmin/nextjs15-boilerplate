@@ -1,48 +1,32 @@
 'use client';
 
-import { use, useMemo } from 'react';
-
-
-
 import { Mousewheel, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-
-
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Link } from 'next-view-transitions';
 
-
-
 import { Badge, Card, Group, Text } from '@mantine/core';
-
-
 
 import type { RocketTypes } from '@/lib/api';
 import type { Locale } from 'next-intl';
 import type { FC } from 'react';
 import type { Swiper as SwiperTypes } from 'swiper';
 
-
-
-
-
-
 import 'swiper/scss';
 import 'swiper/scss/pagination';
 
-
-
-
-
-const RocketSlider: FC<{ asyncData: Promise<RocketTypes[]>; locale: Locale; id: string }> = ({ asyncData, locale, id }) => {
+const RocketSlider: FC<{ data: RocketTypes[]; locale: Locale; id: string }> = ({ data, locale, id }) => {
     const t = useTranslations('rockets');
-    const data: RocketTypes[] = use(asyncData);
-    const ids = useMemo(() => data.map(rocket => rocket.id), [data]);
+    const ids = data.map(rocket => rocket.id);
+    const router = useRouter();
 
     const handleSlideChange = (swiper: SwiperTypes) => {
-        console.log('Slide changed to index:', `/${locale}/rockets/${ids[swiper.realIndex]}`);
-        window.history.pushState({}, '', `/${locale}/rockets/${ids[swiper.realIndex]}`);
+        //console.log('Slide changed to index:', `/${locale}/rockets/${ids[swiper.realIndex]}`);
+        //window.history.pushState({}, '', `/${locale}/rockets/${ids[swiper.realIndex]}`);
+        const newPath = `/${locale}/rockets/${ids[swiper.realIndex]}`;
+        router.push(newPath, { scroll: false });
     };
 
     return (

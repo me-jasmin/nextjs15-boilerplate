@@ -2,25 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-
-
 import { usePathname, useRouter } from 'next/navigation';
-
-
 
 import { Modal as MantineModal } from '@mantine/core';
 
-
-
 import { useDisclosure, useMounted } from '@mantine/hooks';
 
-
-
 import type { FC } from 'react';
-
-
-
-
 
 const Modal: FC = () => {
     const ref = useRef<HTMLDivElement>(null);
