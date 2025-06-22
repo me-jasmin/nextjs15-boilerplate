@@ -2,10 +2,21 @@ import { getTranslations } from 'next-intl/server';
 
 import { Badge, Card, Group, SimpleGrid, Text } from '@mantine/core';
 
-import { rocket } from '@/lib/api';
+import { rocket, rockets } from '@/lib/api';
 import apiClient from '@/lib/api/client';
 
+import { routing } from '@/i18n/routing';
+
 import type { RocketTypes } from '@/lib/api';
+
+const generateStaticParams = async () => {
+    const data: RocketTypes[] = await apiClient({ query: rockets, key: 'rockets' });
+    const ids = data.map(rocket => rocket.id);
+
+    return routing.locales.flatMap(locale => {
+        return ids.map(id => ({ locale, id }));
+    });
+};
 
 const RocketsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const t = await getTranslations('rockets');
@@ -94,3 +105,5 @@ const RocketsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 };
 
 export default RocketsPage;
+
+export { generateStaticParams };

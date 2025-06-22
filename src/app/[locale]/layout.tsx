@@ -111,5 +111,4 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
 };
 
 export default RootLayout;
-
 export { generateStaticParams, viewport, metadata };

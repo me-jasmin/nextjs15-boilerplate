@@ -8,6 +8,8 @@ import { routing } from '@/i18n/routing';
 
 import type { ReactNode } from 'react';
 
+const generateStaticParams = () => routing.locales.map(locale => ({ locale }));
+
 const Layout = async ({ children, params }: { children: ReactNode; params: Promise<{ locale: Locale }> }) => {
     const { locale } = await params;
 
@@ -19,3 +21,4 @@ const Layout = async ({ children, params }: { children: ReactNode; params: Promi
 };
 
 export default Layout;
+export { generateStaticParams };

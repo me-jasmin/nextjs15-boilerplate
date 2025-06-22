@@ -6,8 +6,8 @@ import { routing } from '@/i18n/routing';
 
 import type { Locale } from 'next-intl';
 
-const generateStaticParams = async () => {
-    return routing.locales.flatMap(locale =>
+const generateStaticParams = () =>
+    routing.locales.flatMap(locale =>
         LIMITS.flatMap(limit => {
             const totalPages = Math.ceil(TOTAL_LAUNCHES / limit);
 
@@ -21,7 +21,6 @@ const generateStaticParams = async () => {
             );
         })
     );
-};
 
 const generateMetadata = async ({ params }: { params: Promise<{ locale: Locale }> }) => {
     const { locale } = await params;
