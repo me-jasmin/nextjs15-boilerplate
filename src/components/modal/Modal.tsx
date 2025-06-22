@@ -39,6 +39,8 @@ const Modal: FC = () => {
     };
 
     return (
+    <>
+    modal is here
         <MantineModal
             ref={ref}
             opened={opened}
@@ -55,6 +57,7 @@ const Modal: FC = () => {
             <p>This is an animated modal using GSAP and Mantine UI.</p>
             <button onClick={handleClose}>Close</button>
         </MantineModal>
+    </>
     );
 };
 export default Modal;

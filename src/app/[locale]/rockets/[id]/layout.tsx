@@ -21,7 +21,17 @@ const generateStaticParams = async () => {
     });
 };
 
-const Layout = async ({ modal, children, params }: { modal: ReactNode; children: ReactNode; params: Promise<{ locale: Locale }> }) => {
+const Layout = async ({
+    children,
+    modal,
+    slider,
+    params,
+}: {
+    children: ReactNode;
+    modal: ReactNode;
+    slider: ReactNode;
+    params: Promise<{ locale: Locale }>;
+}) => {
     const { locale } = await params;
 
     if (!hasLocale(routing.locales, locale)) notFound();
@@ -31,6 +41,7 @@ const Layout = async ({ modal, children, params }: { modal: ReactNode; children:
     return (
         <MainLayout fullScreeen noPadding>
             {modal}
+            {slider}
             {children}
         </MainLayout>
     );

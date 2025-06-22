@@ -12,9 +12,6 @@ const generateMetadata = async ({ params }: { params: Promise<{ locale: Locale }
     };
 };
 
-export default function RocketsPage() {
-    // This component is intentionally left empty as the actual content is handled in the slider component.
-    return <div>rooot</div>;
-}
+export { default } from '@/components/pages/rockets';
 
 export { generateMetadata };

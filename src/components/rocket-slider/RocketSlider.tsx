@@ -26,7 +26,7 @@ const RocketSlider: FC<{ data: RocketTypes[]; locale: Locale; id: string }> = ({
         //console.log('Slide changed to index:', `/${locale}/rockets/${ids[swiper.realIndex]}`);
         //window.history.pushState({}, '', `/${locale}/rockets/${ids[swiper.realIndex]}`);
         const newPath = `/${locale}/rockets/${ids[swiper.realIndex]}`;
-        router.push(newPath, { scroll: false });
+        router.push(newPath, undefined, { shallow: true });
     };
 
     return (
