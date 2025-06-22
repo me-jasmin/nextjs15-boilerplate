@@ -24,12 +24,10 @@ const generateStaticParams = async () => {
 const Layout = async ({
     children,
     modal,
-    slider,
     params,
 }: {
     children: ReactNode;
     modal: ReactNode;
-    slider: ReactNode;
     params: Promise<{ locale: Locale }>;
 }) => {
     const { locale } = await params;
@@ -41,7 +39,6 @@ const Layout = async ({
     return (
         <MainLayout fullScreeen noPadding>
             {modal}
-            {slider}
             {children}
         </MainLayout>
     );

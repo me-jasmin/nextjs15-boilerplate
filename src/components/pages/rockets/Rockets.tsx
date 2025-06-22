@@ -14,7 +14,7 @@ import type { FC } from 'react';
 const Rockets: FC<{ params: Promise<{ locale: Locale; id: string }> }> = ({ params }) => {
     const { locale, id } = use(params);
     const data: RocketTypes[] = use(apiClient({ query: rockets, key: 'rockets' }));
-    console.log('Rockets data:', data);
+
     setRequestLocale(locale);
 
     return <RocketSlider data={data} locale={locale} id={id}></RocketSlider>;
