@@ -3,5 +3,6 @@ module.exports = {
     plugins: ['stylelint-order', 'stylelint-selector-bem-pattern'],
     rules: {
         'scss/dollar-variable-empty-line-before': null,
+        'shorthand-property-no-redundant-values': true,
     },
 };

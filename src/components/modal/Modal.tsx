@@ -1,63 +1,68 @@
-'use client';
+import { useRef } from 'react';
 
-import { useEffect, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { Badge, Group, Modal as MantineModal, SimpleGrid, Text } from '@mantine/core';
 
-import { Modal as MantineModal } from '@mantine/core';
+import InfoCard from '@/components/info-card';
 
-import { useDisclosure, useMounted } from '@mantine/hooks';
+import { RocketTypes } from '@/lib/api';
 
+import type { ModalBaseProps } from '@mantine/core';
 import type { FC } from 'react';
 
-const Modal: FC = () => {
+type ModalProps = Pick<ModalBaseProps, 'opened' | 'onClose'> & {
+    data: RocketTypes | undefined;
+    currentId: string;
+};
+
+const Modal: FC<ModalProps> = ({ data, opened, onClose }) => {
+    const t = useTranslations('rockets');
     const ref = useRef<HTMLDivElement>(null);
-    const router = useRouter();
-    const [opened, { open, close }] = useDisclosure(false);
-    const mounted = useMounted();
-    const [openedOnce, setOpenedOnce] = useState(false);
-    const pathname = usePathname();
-    const isModal = pathname.includes('/modal');
-    console.log('Pathname:', pathname);
-    console.log('Modal mounted:', mounted, 'Opened:', opened, 'Opened Once:', openedOnce, 'Is Modal:', isModal);
 
-    useEffect(() => {
-        if ((!opened && mounted && !openedOnce) || (isModal && !opened && mounted && !openedOnce)) {
-            open();
-            setOpenedOnce(true);
-        }
-    }, [isModal, mounted, open, opened, openedOnce]);
-
-    const handleClose = () => {
-        if (opened && mounted && openedOnce) {
-            close();
-            const timeout = setTimeout(() => {
-                router.back();
-            }, 500);
-            return () => clearTimeout(timeout);
-        }
-    };
+    if (!data) return null;
 
     return (
-    <>
-    modal is here
         <MantineModal
             ref={ref}
             opened={opened}
-            onClose={handleClose}
-            overlayProps={{ opacity: 0.55, blur: 3 }}
+            onClose={onClose}
+            overlayProps={{ opacity: 0.5, blur: 50 }}
             size="md"
             centered
             transitionProps={{
-                transition: 'skew-up',
-                duration: 500,
+                transition: 'pop',
+                duration: 200,
             }}
+            title={
+                <Group gap="sm">
+                    <Text size="xl">{data.name}</Text>
+                    {data.active !== null ? (
+                        data.active ? (
+                            <Badge variant="light" color="lime">
+                                {t('active')}
+                            </Badge>
+                        ) : (
+                            <Badge variant="light" color="grey">
+                                {t('inactive')}
+                            </Badge>
+                        )
+                    ) : null}
+                </Group>
+            }
         >
-            <h2>GSAP Modal</h2>
-            <p>This is an animated modal using GSAP and Mantine UI.</p>
-            <button onClick={handleClose}>Close</button>
+            <SimpleGrid cols={2} spacing="md">
+                {data.country !== undefined && <InfoCard value={data.country} label={t('country')} icon="flag" />}
+                {data.first_flight !== undefined && <InfoCard value={data.first_flight} label={t('firstFlight')} icon="rocket" />}
+                {data.success_rate_pct !== undefined && <InfoCard value={`${data.success_rate_pct}%`} label={t('successRate')} icon="progress-check" />}
+                {data.cost_per_launch !== undefined && <InfoCard value={`${(data.cost_per_launch / 1000000).toFixed(1)}M`} label={t('costPerLaunch')} icon="settings-dollar" />}
+                {data.stages !== undefined && <InfoCard value={data.stages} label={t('stages')} icon="stars" />}
+                {data.boosters !== undefined && <InfoCard value={data.boosters} label={t('boosters')} icon="meteor" />}
+                {data.height.meters !== undefined && <InfoCard value={`${data.height.meters}m`} label={t('height')} icon="arrow-autofit-height" />}
+                {data.diameter.meters !== undefined && <InfoCard value={`${data.diameter.meters}m`} label={t('diameter')} icon="arrow-autofit-width" />}
+                {data.mass.kg !== undefined && <InfoCard value={`${data.mass.kg / 1000}T`} label={t('mass')} icon="weight" />}
+            </SimpleGrid>
         </MantineModal>
-    </>
     );
 };
 export default Modal;

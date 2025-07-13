@@ -36,10 +36,7 @@ const RoadsterStats: FC<{ asyncData: Promise<RoadsterTypes> }> = ({ asyncData })
         [data.earth_distance_km, data.launch_date_utc, data.launch_mass_kg, data.mars_distance_km, data.period_days, data.speed_kph, t]
     );
 
-    const roadsterStats = useMemo(
-        () => roadsterStatsMeta.map(({ value, label, icon }) => <InfoCard key={label} {...{ value, label, icon }} />),
-        [roadsterStatsMeta]
-    );
+    const roadsterStats = useMemo(() => roadsterStatsMeta.map(({ value, label, icon }) => <InfoCard key={label} {...{ value, label, icon }} />), [roadsterStatsMeta]);
 
     return <SimpleGrid {...roadsterStatsLayoutSettings}>{roadsterStats}</SimpleGrid>;
 };

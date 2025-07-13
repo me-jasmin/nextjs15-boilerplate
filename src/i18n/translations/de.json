@@ -59,7 +59,7 @@
     "rockets": {
         "meta": {
             "title": "Raketen",
-            "description": "SpaceX-Raketen sind für verschiedene Missionen konzipiert, darunter Satellitenstarts, Versorgungsflüge zur Internationalen Raumstation (ISS) und bemannte Raumflüge. Sie sind bekannt für ihre Wiederverwendbarkeit und Kosteneffizienz."
+            "description": "SpaceX-Raketen sind für verschiedene Missionen konzipiert, darunter Satellitenstarts, Versorgungsmissionen zur Internationalen Raumstation (ISS) und bemannte Raumflüge. Sie sind bekannt für ihre Wiederverwendbarkeit und Kosteneffizienz."
         },
         "rocketsTitle": "SpaceX-Raketen",
         "active": "Aktiv",
@@ -68,6 +68,11 @@
         "country": "Land",
         "successRate": "Erfolgsrate",
         "costPerLaunch": "Kosten pro Start",
+        "stages": "Stufen",
+        "height": "Höhe",
+        "diameter": "Durchmesser",
+        "mass": "Masse",
+        "boosters": "Booster",
         "readMoreWikipedia": "Mehr auf Wikipedia lesen"
     },
     "launches": {
@@ -95,6 +100,7 @@
         "missionPatch": "Missionsabzeichen",
         "article": "Artikel",
         "video": "Video",
+        "images": "Bilder",
         "wikipedia": "Wikipedia"
     },
     "other": {

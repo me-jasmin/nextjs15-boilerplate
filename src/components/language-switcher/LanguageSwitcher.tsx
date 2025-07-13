@@ -33,12 +33,7 @@ const LanguageSwitcher: FC<{ mobile?: boolean }> = ({ mobile = false }) => {
             languageMeta.map(({ locale, label }) => {
                 if (mobile) {
                     return (
-                        <UnstyledButton
-                            className={navigationClasses['navigation__link']}
-                            component={Link}
-                            key={locale}
-                            href={`/${locale}/${pathnameWithoutLocale}`}
-                        >
+                        <UnstyledButton className={navigationClasses['navigation__link']} component={Link} key={locale} href={`/${locale}/${pathnameWithoutLocale}`}>
                             {label}
                         </UnstyledButton>
                     );

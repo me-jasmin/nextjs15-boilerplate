@@ -37,20 +37,55 @@
             linear-gradient(90deg, light-dark($overlay-from-color, $overlay-from-color-dark), light-dark($overlay-to-color, $overlay-to-color-dark)),
             url($image) no-repeat center center / cover fixed;
     } @else {
-        background: linear-gradient(
-            90deg,
-            light-dark($overlay-from-color, $overlay-from-color-dark),
-            light-dark($overlay-to-color, $overlay-to-color-dark)
-        );
+        background: linear-gradient(90deg, light-dark($overlay-from-color, $overlay-from-color-dark), light-dark($overlay-to-color, $overlay-to-color-dark));
     }
 }
 
 @mixin panel-background {
-    background: linear-gradient(
-        30deg,
-        light-dark($hero-background-color-1, $hero-background-color-1-dark) 1%,
-        light-dark($hero-background-color-2, $hero-background-color-2-dark) 135%
-    );
+    background: linear-gradient(30deg, light-dark($hero-background-color-1, $hero-background-color-1-dark) 1%, light-dark($hero-background-color-2, $hero-background-color-2-dark) 135%);
     box-shadow: var(--mantine-shadow-xl);
     backdrop-filter: blur(0.5rem);
+}
+
+@mixin cover($self, $z: -1) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    min-height: 100vh;
+
+    @include for-tablet-portrait-up {
+        &:not(#{$self}--no-padding) {
+            padding: 10rem 5rem;
+        }
+    }
+
+    &::after {
+        position: absolute;
+        inset: 0;
+        z-index: $z;
+        display: block;
+        max-width: 100vw;
+        min-height: 100vh;
+        content: '';
+        filter: light-dark(saturate(80%) contrast(70%) brightness(120%), saturate(120%) contrast(90%) brightness(80%));
+
+        @include background-overlay;
+    }
+}
+
+@mixin hero {
+    min-height: 100dvh;
+    padding: 8rem var(--mantine-spacing-lg) var(--mantine-spacing-lg) var(--mantine-spacing-lg);
+
+    @include panel-background;
+
+    @include for-tablet-portrait-up {
+        align-self: center;
+        width: min(40rem, 100dvw);
+        min-height: auto;
+        padding: var(--mantine-spacing-xl);
+        margin: auto 0 auto auto;
+        border-radius: var(--mantine-radius-md);
+    }
 }

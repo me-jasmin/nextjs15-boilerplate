@@ -68,6 +68,11 @@
         "country": "Country",
         "successRate": "Success Rate",
         "costPerLaunch": "Cost Per Launch",
+        "stages": "Stages",
+        "height": "Height",
+        "diameter": "Diameter",
+        "mass": "Mass",
+        "boosters": "Boosters",
         "readMoreWikipedia": "Read more on Wikipedia"
     },
     "launches": {
@@ -95,6 +100,7 @@
         "missionPatch": "Mission Patch",
         "article": "Article",
         "video": "Video",
+        "images": "Images",
         "wikipedia": "Wikipedia"
     },
     "other": {

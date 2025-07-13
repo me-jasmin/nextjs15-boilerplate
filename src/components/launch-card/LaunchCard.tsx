@@ -15,7 +15,7 @@ import classes from '@components/launch-card/launch-card.module.scss';
 type LaunchCardProps = LaunchTypes & { className?: string };
 
 const LaunchCard: FC<LaunchCardProps> = ({
-    details,
+    id,
     launch_date_utc: launchDateUtc,
     launch_site: launchSite,
     launch_success: launchSuccess,
@@ -68,39 +68,19 @@ const LaunchCard: FC<LaunchCardProps> = ({
                     <Text size="sm">
                         {t('launchSite')}: {launchSite?.site_name || t('unknown')}
                     </Text>
+                    <Anchor component={Link} size="sm" mb="md" href={`/${locale}/rockets/${rocket.rocket.id}`} prefetch>
+                        <Group component="span" gap={5} align="center">
+                            <TablerIcon icon="rocket" stroke={1.5} size={16} />
+                            {rocket.rocket_name}
+                        </Group>
+                    </Anchor>
                 </Stack>
-                <Anchor component={Link} size="sm" mb="md" href={`/${locale}/rocket/${rocket.rocket.id}`} prefetch>
-                    <Group component="span" gap={5} align="center">
-                        <TablerIcon icon="rocket" stroke={1.5} size={16} />
-                        {rocket.rocket_name}
-                    </Group>
-                </Anchor>
-                <Text mb="md">{details ? `${details.slice(0, 200)}...` : t('noDetails')}</Text>
                 <Text size="sm" fw={800} mt="auto" mb="xs">
                     {t('quickLinks')}
                 </Text>
-                <Group gap="xs">
-                    {links.article_link && (
-                        <Button href={links.article_link} target="_blank" rel="noopener noreferrer" component={Link} variant="light" size="xs">
-                            {t('article')}
-                        </Button>
-                    )}
-                    {links.mission_patch && (
-                        <Button href={links.mission_patch} target="_blank" rel="noopener noreferrer" component={Link} variant="light" size="xs">
-                            {t('missionPatch')}
-                        </Button>
-                    )}
-                    {links.video_link && (
-                        <Button href={links.video_link} target="_blank" rel="noopener noreferrer" component={Link} variant="light" size="xs">
-                            {t('video')}
-                        </Button>
-                    )}
-                    {links.wikipedia && (
-                        <Button href={links.wikipedia} target="_blank" rel="noopener noreferrer" component={Link} variant="light" size="xs">
-                            {t('wikipedia')}
-                        </Button>
-                    )}
-                </Group>
+                <Button component={Link} href={`/${locale}/launch/${id}`} variant="light" size="xs" mt="xs">
+                    More Details
+                </Button>
             </Stack>
         </Flex>
     );

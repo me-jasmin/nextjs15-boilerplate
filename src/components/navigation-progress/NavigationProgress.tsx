@@ -19,9 +19,7 @@ const NavigationProgress: FC = () => {
         return () => nprogress.start();
     }, [pathname]);
 
-    return (
-        <NavigationProgressMantine className={classes['navigation-progress']} withinPortal={false} size={2} aria-label="navigation progress bar" />
-    );
+    return <NavigationProgressMantine className={classes['navigation-progress']} withinPortal={false} size={2} aria-label="navigation progress bar" />;
 };
 
 export default NavigationProgress;

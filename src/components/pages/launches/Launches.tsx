@@ -61,7 +61,7 @@ const Launches: FC<{ params: Promise<{ locale: Locale; slug: string[] }> }> = ({
         variables: { limit, offset, sort, order },
         key: 'launchesPast',
     });
-
+    console.log('launched');
     setRequestLocale(locale);
 
     return (
@@ -76,13 +76,7 @@ const Launches: FC<{ params: Promise<{ locale: Locale; slug: string[] }> }> = ({
                 <LaunchesResults asyncData={data} />
             </Suspense>
             <Suspense fallback={<LaunchesPaginationLoading />}>
-                <LaunchesPagination
-                    totalPages={Math.ceil(TOTAL_LAUNCHES / limit)}
-                    currentPage={Math.floor(offset / limit) + 1}
-                    limit={limit}
-                    sort={sort}
-                    order={order}
-                />
+                <LaunchesPagination totalPages={Math.ceil(TOTAL_LAUNCHES / limit)} currentPage={Math.floor(offset / limit) + 1} limit={limit} sort={sort} order={order} />
             </Suspense>
         </>
     );

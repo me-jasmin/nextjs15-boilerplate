@@ -34,7 +34,19 @@ const Navigation: FC = () => {
 
     const locale = pathname.split('/')[1];
     const isPinned = scroll.y > 0;
-    const isActive = useCallback((path: string) => path === pathname, [pathname]);
+
+    const isActive = useCallback(
+        (url: string): boolean => {
+            const cleanUrl = url.split('/').filter(Boolean);
+            const cleanPath = pathname.split('/').filter(Boolean);
+
+            cleanUrl.splice(2, cleanUrl.length - 2);
+            cleanPath.splice(2, cleanPath.length - 2);
+
+            return cleanPath.join('') === cleanUrl.join('');
+        },
+        [pathname]
+    );
 
     gsap.registerPlugin(useGSAP);
 

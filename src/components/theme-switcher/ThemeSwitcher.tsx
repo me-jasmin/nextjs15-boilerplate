@@ -40,13 +40,7 @@ const ThemeSwitcher: FC<{ mobile?: boolean }> = ({ mobile = false }) => {
 
     if (mobile) {
         return (
-            <Group
-                className={navigationClasses['navigation__link']}
-                onClick={() => setColorScheme(nextColorScheme)}
-                component={UnstyledButton}
-                data-animated
-                gap="xs"
-            >
+            <Group className={navigationClasses['navigation__link']} onClick={() => setColorScheme(nextColorScheme)} component={UnstyledButton} data-animated gap="xs">
                 {colorSchemeMeta.label}
                 {colorSchemeMeta.icon}
             </Group>
@@ -55,14 +49,7 @@ const ThemeSwitcher: FC<{ mobile?: boolean }> = ({ mobile = false }) => {
 
     return (
         <Tooltip label={colorSchemeMeta.label} openDelay={1000} arrowPosition="side" arrowOffset={10} arrowSize={8} withArrow>
-            <ActionIcon
-                className={classes['theme-switcher']}
-                onClick={() => setColorScheme(nextColorScheme)}
-                variant="subtle"
-                color="gray"
-                size="lg"
-                aria-label="Toggle color scheme"
-            >
+            <ActionIcon className={classes['theme-switcher']} onClick={() => setColorScheme(nextColorScheme)} variant="subtle" color="gray" size="lg" aria-label="Toggle color scheme">
                 {colorSchemeMeta.icon}
             </ActionIcon>
         </Tooltip>

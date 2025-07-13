@@ -26,8 +26,7 @@ const LaunchesPagination: FC<LaunchesPaginationProps> = ({ totalPages, currentPa
             value={currentPage}
             onChange={page => redirect(`/${locale}/launches/${limit}/${(page - 1) * limit}/${sort}/${order}`, RedirectType.push)}
             getControlProps={control => ({
-                'aria-label':
-                    control === 'first' ? 'First pages' : control === 'next' ? 'Next page' : control === 'previous' ? 'Previous page' : 'Last page',
+                'aria-label': control === 'first' ? 'First pages' : control === 'next' ? 'Next page' : control === 'previous' ? 'Previous page' : 'Last page',
             })}
             getItemProps={page => ({ 'aria-label': `Page ${page}` })}
         />

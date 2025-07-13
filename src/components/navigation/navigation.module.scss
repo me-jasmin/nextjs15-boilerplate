@@ -63,6 +63,7 @@ $navigation-background-pinned-color-dark: rgb(0 0 0 / 40%);
 
     &__logo {
         width: 10rem;
+        height: auto;
         color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
     }
 

@@ -26,3 +26,4 @@ const MainLayout: FC<MainLayoutProps> = ({ children, background, fullWidth = fal
 );
 
 export default MainLayout;
+export type { MainLayoutProps };

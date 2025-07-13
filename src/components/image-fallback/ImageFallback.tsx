@@ -24,17 +24,7 @@ const ImageFallback: FC<ImageProps> = ({ src, alt, width, height, className, ...
         );
     }
 
-    return (
-        <Image
-            className={clsx(classes['image-fallback'], className)}
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
-            onError={() => setError(true)}
-            {...rest}
-        />
-    );
+    return <Image className={clsx(classes['image-fallback'], className)} src={src} alt={alt} width={width} height={height} onError={() => setError(true)} {...rest} />;
 };
 
 export default ImageFallback;

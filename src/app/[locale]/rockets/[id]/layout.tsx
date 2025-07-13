@@ -1,8 +1,10 @@
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
+
 import { notFound } from 'next/navigation';
 import { hasLocale, Locale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
-import MainLayout from '@/components/layouts/MainLayout.layout';
+import MainLayout from '@/components/layouts';
 
 import { rockets } from '@/lib/api';
 import apiClient from '@/lib/api/client';
@@ -21,15 +23,7 @@ const generateStaticParams = async () => {
     });
 };
 
-const Layout = async ({
-    children,
-    modal,
-    params,
-}: {
-    children: ReactNode;
-    modal: ReactNode;
-    params: Promise<{ locale: Locale }>;
-}) => {
+const Layout = async ({ children, params }: { children: ReactNode; params: Promise<{ locale: Locale }> }) => {
     const { locale } = await params;
 
     if (!hasLocale(routing.locales, locale)) notFound();
@@ -37,10 +31,11 @@ const Layout = async ({
     setRequestLocale(locale);
 
     return (
-        <MainLayout fullScreeen noPadding>
-            {modal}
-            {children}
-        </MainLayout>
+        <NuqsAdapter>
+            <MainLayout fullScreeen noPadding>
+                {children}
+            </MainLayout>
+        </NuqsAdapter>
     );
 };
 

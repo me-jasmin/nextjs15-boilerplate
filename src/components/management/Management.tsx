@@ -28,10 +28,7 @@ const Management: FC<{ asyncData: Promise<AboutTypes> }> = ({ asyncData }) => {
         [data.ceo, data.coo, data.cto, data.cto_propulsion, t]
     );
 
-    const management = useMemo(
-        () => managementMeta.map(({ name, title, avatar }) => <People key={title} {...{ name, title, avatar }} />),
-        [managementMeta]
-    );
+    const management = useMemo(() => managementMeta.map(({ name, title, avatar }) => <People key={title} {...{ name, title, avatar }} />), [managementMeta]);
 
     return <SimpleGrid {...managementLayoutSettings}>{management}</SimpleGrid>;
 };

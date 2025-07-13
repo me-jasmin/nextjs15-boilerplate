@@ -62,6 +62,5 @@ query rockets {
     }
 }`;
 
-export default rockets;
-export { rocket };
+export { rockets, rocket };
 export type { RocketTypes };

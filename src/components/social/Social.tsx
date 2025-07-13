@@ -23,16 +23,7 @@ const Social: FC<{ asyncData: Promise<AboutTypes> }> = ({ asyncData }) => {
     );
 
     const links = linksMeta.map(({ name, url, icon }) => (
-        <Button
-            key={name}
-            leftSection={<TablerIcon icon={icon} size={16} stroke={1.5} />}
-            href={url}
-            rel="noopener noreferrer"
-            target="_blank"
-            component="a"
-            variant="light"
-            size="xs"
-        >
+        <Button key={name} leftSection={<TablerIcon icon={icon} size={16} stroke={1.5} />} href={url} rel="noopener noreferrer" target="_blank" component="a" variant="light" size="xs">
             {name}
         </Button>
     ));

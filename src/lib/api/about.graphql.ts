@@ -55,5 +55,5 @@ query about {
     }
 }`;
 
-export default about;
+export { about };
 export type { AboutTypes };

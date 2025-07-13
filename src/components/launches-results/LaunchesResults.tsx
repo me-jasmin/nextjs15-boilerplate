@@ -13,7 +13,7 @@ import type { LaunchTypes } from '@/lib/api';
 import type { FC } from 'react';
 
 const launchesResultsLayoutSettings = {
-    cols: { base: 1, sm: 2, lg: 3 },
+    cols: { base: 1, sm: 2, lg: 3, xl: 4 },
     spacing: 'lg',
 };
 

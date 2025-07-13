@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale, Locale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
-import MainLayout from '@/components/layouts/MainLayout.layout';
+import MainLayout from '@/components/layouts';
 
 import { routing } from '@/i18n/routing';
 
