@@ -1,5 +1,7 @@
 import { use, useMemo } from 'react';
 
+import { IconCalendarTime, IconCashBanknote, IconSparkles, IconUfo, IconUniverse, IconUsers, IconWorldUpload } from '@tabler/icons-react';
+
 import { useTranslations } from 'next-intl';
 
 import { SimpleGrid } from '@mantine/core';
@@ -21,13 +23,13 @@ const Info = ({ asyncData }: { asyncData: Promise<AboutTypes> }) => {
     const infoMeta = useMemo(
         () =>
             [
-                { value: data.founder, label: t('founder'), icon: 'universe' },
-                { value: data.founded, label: t('founded'), icon: 'calendar-time' },
-                { value: `${data.employees / 1000}K`, label: t('employees'), icon: 'users' },
-                { value: `${data.valuation / 1000000000}B`, label: t('valuation'), icon: 'cash-banknote' },
-                { value: data.test_sites, label: t('testSites'), icon: 'sparkles' },
-                { value: data.launch_sites, label: t('launchSites'), icon: 'world-upload' },
-                { value: data.vehicles, label: t('vehicles'), icon: 'ufo' },
+                { value: data.founder, label: t('founder'), icon: <IconUniverse /> },
+                { value: data.founded, label: t('founded'), icon: <IconCalendarTime /> },
+                { value: `${data.employees / 1000}K`, label: t('employees'), icon: <IconUsers /> },
+                { value: `${data.valuation / 1000000000}B`, label: t('valuation'), icon: <IconCashBanknote /> },
+                { value: data.test_sites, label: t('testSites'), icon: <IconSparkles /> },
+                { value: data.launch_sites, label: t('launchSites'), icon: <IconWorldUpload /> },
+                { value: data.vehicles, label: t('vehicles'), icon: <IconUfo /> },
             ] as InfoCardProps[],
         [data.employees, data.founded, data.founder, data.launch_sites, data.test_sites, data.valuation, data.vehicles, t]
     );

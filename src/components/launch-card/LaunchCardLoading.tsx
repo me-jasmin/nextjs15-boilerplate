@@ -1,8 +1,7 @@
+import { IconRocket } from '@tabler/icons-react';
 import clsx from 'clsx';
 
 import { Flex, Group, Skeleton, Stack } from '@mantine/core';
-
-import TablerIcon from '@/components/tabler-icon';
 
 import type { FC } from 'react';
 
@@ -11,7 +10,7 @@ import classes from '@components/launch-card/launch-card.module.scss';
 const LaunchCardLoading: FC = () => (
     <Flex className={clsx(classes['launch-card'])}>
         <div className={classes['launch-card__image-placeholder']}>
-            <TablerIcon icon="rocket" stroke={1.5} size={150} opacity={0.5} />
+            <IconRocket stroke={1.5} size={150} opacity={0.5} />
         </div>
         <Stack gap={0} p="lg" flex={1}>
             <Stack gap={0} mb="md">

@@ -1,11 +1,10 @@
+import { IconRocket } from '@tabler/icons-react';
 import clsx from 'clsx';
 
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from 'next-view-transitions';
 
 import { Anchor, Badge, Button, Flex, Group, Stack, Text } from '@mantine/core';
-
-import TablerIcon from '@/components/tabler-icon';
 
 import type { LaunchTypes } from '@/lib/api';
 import type { FC } from 'react';
@@ -34,7 +33,7 @@ const LaunchCard: FC<LaunchCardProps> = ({
                 <div className={classes['launch-card__image']} style={{ backgroundImage: `url(${links.flickr_images[0]})` }}></div>
             ) : (
                 <div className={classes['launch-card__image-placeholder']}>
-                    <TablerIcon icon="rocket" stroke={1.5} size={150} />
+                    <IconRocket stroke={1.5} size={150} />
                 </div>
             )}
             <Stack gap={0} p="lg" flex={1}>
@@ -70,7 +69,7 @@ const LaunchCard: FC<LaunchCardProps> = ({
                     </Text>
                     <Anchor component={Link} size="sm" mb="md" href={`/${locale}/rockets/${rocket.rocket.id}`} prefetch>
                         <Group component="span" gap={5} align="center">
-                            <TablerIcon icon="rocket" stroke={1.5} size={16} />
+                            <IconRocket stroke={1.5} size={16} />
                             {rocket.rocket_name}
                         </Group>
                     </Anchor>

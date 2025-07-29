@@ -2,13 +2,13 @@
 
 import { useMemo } from 'react';
 
+import { IconChevronDown } from '@tabler/icons-react';
+
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Link } from 'next-view-transitions';
 
 import { Accordion, AccordionControl, Group, Menu, Stack, UnstyledButton } from '@mantine/core';
-
-import TablerIcon from '@/components/tabler-icon';
 
 import type { FC } from 'react';
 
@@ -55,7 +55,7 @@ const LanguageSwitcher: FC<{ mobile?: boolean }> = ({ mobile = false }) => {
                     <AccordionControl className={navigationClasses['navigation__link']} component={UnstyledButton} chevron={null}>
                         <Group gap="xs">
                             Language
-                            <TablerIcon icon="chevron-down" size={36} stroke={2} />
+                            <IconChevronDown size={36} stroke={2} />
                         </Group>
                     </AccordionControl>
                     <Accordion.Panel>
@@ -78,7 +78,7 @@ const LanguageSwitcher: FC<{ mobile?: boolean }> = ({ mobile = false }) => {
         >
             <Menu.Target>
                 <UnstyledButton className={classes['navigation__link']} variant="subtle" color="gray">
-                    {t('label')} <TablerIcon icon="chevron-down" size={14} stroke={1.5} />
+                    {t('label')} <IconChevronDown size={14} stroke={1.5} />
                 </UnstyledButton>
             </Menu.Target>
             <Menu.Dropdown>{launguages}</Menu.Dropdown>

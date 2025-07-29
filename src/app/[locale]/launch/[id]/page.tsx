@@ -1,3 +1,5 @@
+import { IconRocket } from '@tabler/icons-react';
+
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from 'next-view-transitions';
@@ -5,7 +7,6 @@ import { Link } from 'next-view-transitions';
 import { Anchor, Badge, Button, Group, SimpleGrid, Stack, Text } from '@mantine/core';
 
 import Lightbox from '@/components/lightbox/Lightbox';
-import TablerIcon from '@/components/tabler-icon';
 
 import { launch, launches } from '@/lib/api';
 import apiClient from '@/lib/api/client';
@@ -71,7 +72,7 @@ const LaunchPage = async ({ params }: { params: { id: string; locale: Locale } }
             </Stack>
             <Anchor component={Link} size="sm" mb="md" href={`/${locale}/rockets/${rocket.rocket.id}`} prefetch>
                 <Group component="span" gap={5} align="center">
-                    <TablerIcon icon="rocket" stroke={1.5} size={16} />
+                    <IconRocket stroke={1.5} size={16} />
                     {rocket.rocket_name}
                 </Group>
             </Anchor>

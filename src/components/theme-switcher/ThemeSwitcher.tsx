@@ -2,9 +2,9 @@
 
 import { useMemo } from 'react';
 
-import { ActionIcon, Group, Tooltip, UnstyledButton, useMantineColorScheme } from '@mantine/core';
+import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react';
 
-import TablerIcon from '@/components/tabler-icon';
+import { ActionIcon, Group, Tooltip, UnstyledButton, useMantineColorScheme } from '@mantine/core';
 
 import { useMounted } from '@mantine/hooks';
 
@@ -22,9 +22,9 @@ const ThemeSwitcher: FC<{ mobile?: boolean }> = ({ mobile = false }) => {
         const iconProps = { stroke: mobile ? 2 : 1.5, size: mobile ? 36 : 24 };
         const iconLabel = colorScheme === 'light' ? 'Light mode' : colorScheme === 'dark' ? 'Dark mode' : 'System';
         const icons = {
-            light: <TablerIcon icon="sun" {...iconProps} />,
-            dark: <TablerIcon icon="moon" {...iconProps} />,
-            auto: <TablerIcon icon="device-laptop" {...iconProps} />,
+            light: <IconSun {...iconProps} />,
+            dark: <IconMoon {...iconProps} />,
+            auto: <IconDeviceLaptop {...iconProps} />,
         };
 
         return { icon: mounted ? icons[colorScheme] : <></>, label: mounted ? iconLabel : '' };

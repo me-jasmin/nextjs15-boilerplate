@@ -1,5 +1,7 @@
 import { use, useMemo } from 'react';
 
+import { IconBrandSpeedtest, IconCalendarShare, IconRulerMeasure, IconWeight } from '@tabler/icons-react';
+
 import { useTranslations } from 'next-intl';
 
 import { SimpleGrid } from '@mantine/core';
@@ -25,13 +27,13 @@ const RoadsterStats: FC<{ asyncData: Promise<RoadsterTypes> }> = ({ asyncData })
                 {
                     value: new Date(data.launch_date_utc).toLocaleDateString(),
                     label: t('launchDate'),
-                    icon: 'calendar-up',
+                    icon: <IconCalendarShare />,
                 },
-                { value: (data.period_days / 365).toFixed(2), label: t('yearsInSpace'), icon: 'calendar-share' },
-                { value: `${(data.earth_distance_km / 1000000).toFixed(2)}M km/h`, label: t('distanceFromEarth'), icon: 'ruler-measure' },
-                { value: `${(data.mars_distance_km / 1000000).toFixed(2)}M km/h`, label: t('distanceFromMars'), icon: 'ruler-measure' },
-                { value: `${data.speed_kph.toFixed(2)}km/h`, label: t('currentSpeed'), icon: 'brand-speedtest' },
-                { value: `${data.launch_mass_kg}kg`, label: t('mass'), icon: 'weight' },
+                { value: (data.period_days / 365).toFixed(2), label: t('yearsInSpace'), icon: <IconCalendarShare /> },
+                { value: `${(data.earth_distance_km / 1000000).toFixed(2)}M km/h`, label: t('distanceFromEarth'), icon: <IconRulerMeasure /> },
+                { value: `${(data.mars_distance_km / 1000000).toFixed(2)}M km/h`, label: t('distanceFromMars'), icon: <IconRulerMeasure /> },
+                { value: `${data.speed_kph.toFixed(2)}km/h`, label: t('currentSpeed'), icon: <IconBrandSpeedtest /> },
+                { value: `${data.launch_mass_kg}kg`, label: t('mass'), icon: <IconWeight /> },
             ] as InfoCardProps[],
         [data.earth_distance_km, data.launch_date_utc, data.launch_mass_kg, data.mars_distance_km, data.period_days, data.speed_kph, t]
     );

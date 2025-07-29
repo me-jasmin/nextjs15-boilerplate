@@ -2,6 +2,8 @@
 
 import { use, useEffect, useRef, useState } from 'react';
 
+import { IconRocket } from '@tabler/icons-react';
+
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Locale, useTranslations } from 'next-intl';
@@ -10,7 +12,6 @@ import { Link } from 'next-view-transitions';
 import { Anchor, Badge, Button, Group, Modal as MantineModal, SimpleGrid, Stack, Text } from '@mantine/core';
 
 import Lightbox from '@/components/lightbox/Lightbox';
-import TablerIcon from '@/components/tabler-icon';
 
 import { useDisclosure, useMounted } from '@mantine/hooks';
 
@@ -105,7 +106,7 @@ const Modal: FC<{ params: Promise<{ locale: Locale; id: string }> }> = ({ params
                     </Stack>
                     <Anchor component={Link} size="sm" mb="md" href={`/${locale}/rockets/${rocket.rocket.id}`} prefetch>
                         <Group component="span" gap={5} align="center">
-                            <TablerIcon icon="rocket" stroke={1.5} size={16} />
+                            <IconRocket stroke={1.5} size={16} />
                             {rocket.rocket_name}
                         </Group>
                     </Anchor>
