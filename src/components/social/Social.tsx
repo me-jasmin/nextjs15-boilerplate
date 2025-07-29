@@ -1,8 +1,8 @@
 import { use, useMemo } from 'react';
 
-import { IconBrandFlickr, IconBrandX, IconGlobe } from '@tabler/icons-react';
-
 import { Button, Group } from '@mantine/core';
+
+import { IconBrandFlickr, IconBrandX, IconGlobe } from '@tabler/icons-react';
 
 import type { AboutTypes } from '@/lib/api';
 import type { IconProps } from '@tabler/icons-react';

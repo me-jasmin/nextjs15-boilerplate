@@ -2,11 +2,11 @@
 
 import { useMemo } from 'react';
 
-import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react';
-
 import { ActionIcon, Group, Tooltip, UnstyledButton, useMantineColorScheme } from '@mantine/core';
 
 import { useMounted } from '@mantine/hooks';
+
+import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react';
 
 import type { MantineColorScheme } from '@mantine/core';
 import type { FC } from 'react';

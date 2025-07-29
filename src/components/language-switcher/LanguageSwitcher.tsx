@@ -2,13 +2,13 @@
 
 import { useMemo } from 'react';
 
-import { IconChevronDown } from '@tabler/icons-react';
-
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Link } from 'next-view-transitions';
 
 import { Accordion, AccordionControl, Group, Menu, Stack, UnstyledButton } from '@mantine/core';
+
+import { IconChevronDown } from '@tabler/icons-react';
 
 import type { FC } from 'react';
 

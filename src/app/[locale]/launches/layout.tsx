@@ -1,12 +1,10 @@
 import type { ReactNode } from 'react';
 
-const Layout = ({ children, modal }: { children: ReactNode; modal: ReactNode }) => {
-    return (
-        <>
-            {modal}
-            {children}
-        </>
-    );
-};
+const Layout = ({ children, launch }: { children: ReactNode; launch: ReactNode }) => (
+    <>
+        {launch}
+        {children}
+    </>
+);
 
 export default Layout;

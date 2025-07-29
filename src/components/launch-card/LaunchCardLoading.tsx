@@ -1,7 +1,8 @@
-import { IconRocket } from '@tabler/icons-react';
 import clsx from 'clsx';
 
 import { Flex, Group, Skeleton, Stack } from '@mantine/core';
+
+import { IconRocket } from '@tabler/icons-react';
 
 import type { FC } from 'react';
 

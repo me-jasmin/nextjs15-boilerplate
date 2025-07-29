@@ -7,7 +7,7 @@ type ApiClientArgs = {
     revalidate?: number;
 };
 
-const endpoint = process.env.REACT_APP_SPACEX_API!;
+const endpoint = process.env.NEXT_PUBLIC_SPACEX_API!;
 
 const apiClient = cache(async <T = unknown>({ query, variables = {}, key = '', revalidate = 3600 }: ApiClientArgs): Promise<T> => {
     if (!endpoint) throw new Error('Missing environment variable');

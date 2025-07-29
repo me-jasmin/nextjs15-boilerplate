@@ -1,12 +1,12 @@
 import { use, useMemo } from 'react';
 
-import { IconBrandSpeedtest, IconCalendarShare, IconRulerMeasure, IconWeight } from '@tabler/icons-react';
-
 import { useTranslations } from 'next-intl';
 
 import { SimpleGrid } from '@mantine/core';
 
 import InfoCard from '@/components/info-card';
+
+import { IconBrandSpeedtest, IconCalendarShare, IconRulerMeasure, IconWeight } from '@tabler/icons-react';
 
 import type { InfoCardProps } from '@/components/info-card';
 import type { RoadsterTypes } from '@/lib/api';

@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 
-import { IconArrowAutofitHeight, IconArrowAutofitWidth, IconFlag, IconMeteor, IconProgressCheck, IconRocket, IconSettingsDollar, IconStars, IconWeight } from '@tabler/icons-react';
-
 import { useTranslations } from 'next-intl';
 
 import { Badge, Group, Modal as MantineModal, SimpleGrid, Text } from '@mantine/core';
 
 import InfoCard from '@/components/info-card';
+
+import { IconArrowAutofitHeight, IconArrowAutofitWidth, IconFlag, IconMeteor, IconProgressCheck, IconRocket, IconSettingsDollar, IconStars, IconWeight } from '@tabler/icons-react';
 
 import { RocketTypes } from '@/lib/api';
 

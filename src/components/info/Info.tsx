@@ -1,12 +1,12 @@
 import { use, useMemo } from 'react';
 
-import { IconCalendarTime, IconCashBanknote, IconSparkles, IconUfo, IconUniverse, IconUsers, IconWorldUpload } from '@tabler/icons-react';
-
 import { useTranslations } from 'next-intl';
 
 import { SimpleGrid } from '@mantine/core';
 
 import InfoCard from '@/components/info-card';
+
+import { IconCalendarTime, IconCashBanknote, IconSparkles, IconUfo, IconUniverse, IconUsers, IconWorldUpload } from '@tabler/icons-react';
 
 import type { InfoCardProps } from '@/components/info-card';
 import type { AboutTypes } from '@/lib/api';

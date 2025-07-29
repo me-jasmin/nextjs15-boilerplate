@@ -61,7 +61,7 @@ const Launches: FC<{ params: Promise<{ locale: Locale; slug: string[] }> }> = ({
         variables: { limit, offset, sort, order },
         key: 'launchesPast',
     });
-    console.log('launched');
+
     setRequestLocale(locale);
 
     return (

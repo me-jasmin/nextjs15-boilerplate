@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 
-import { IconPhotoX } from '@tabler/icons-react';
 import clsx from 'clsx';
 
 import Image from 'next/image';
+
+import { IconPhotoX } from '@tabler/icons-react';
 
 import type { ImageProps } from 'next/image';
 import type { FC } from 'react';

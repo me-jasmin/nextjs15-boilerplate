@@ -1,10 +1,11 @@
-import { IconRocket } from '@tabler/icons-react';
 import clsx from 'clsx';
 
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from 'next-view-transitions';
 
 import { Anchor, Badge, Button, Flex, Group, Stack, Text } from '@mantine/core';
+
+import { IconRocket } from '@tabler/icons-react';
 
 import type { LaunchTypes } from '@/lib/api';
 import type { FC } from 'react';
